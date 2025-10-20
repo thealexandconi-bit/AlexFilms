@@ -1,0 +1,35 @@
+[
+  {
+    "id": "drone-epic-1",
+    "title": "Epic FPV Journey #1",
+    "year": 2024,
+    "client": "Personal",
+    "videoEmbed": "https://www.youtube.com/embed/dNgVbNkXi3Q",
+    "coverImage": "/images/video1.jpg",
+    "short": "High-speed cinematic FPV flight across Southeast Asia.",
+    "long": "An immersive FPV sequence showcasing breathtaking landscapes and smooth transitions.",
+    "tags": ["FPV", "Travel", "Cinematic"]
+  },
+  {
+    "id": "drone-epic-2",
+    "title": "Epic FPV Journey #2",
+    "year": 2024,
+    "client": "Personal",
+    "videoEmbed": "https://www.youtube.com/embed/Upn-O-M5Mic",
+    "coverImage": "/images/video2.jpg",
+    "short": "A technical FPV showcase through stunning cityscapes.",
+    "long": "Capturing urban rhythm from a fresh perspective, weaving motion and story through FPV.",
+    "tags": ["FPV", "Urban", "Drone"]
+  },
+  {
+    "id": "drone-epic-3",
+    "title": "Epic FPV Journey #3",
+    "year": 2024,
+    "client": "Personal",
+    "videoEmbed": "https://www.youtube.com/embed/-sZ3hP8bK6U",
+    "coverImage": "/images/video3.jpg",
+    "short": "Dramatic aerial adventure in vibrant environments.",
+    "long": "FPV flight pushing limits of control and creativity — shot with precision and cinematic flow.",
+    "tags": ["FPV", "Adventure", "Cinematic"]
+  }
+]
