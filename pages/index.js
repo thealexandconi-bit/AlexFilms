@@ -13,11 +13,7 @@ function Stat({ end, suffix = "+", label, duration = 3, separator = "," }) {
   return (
     <div ref={ref} className="text-center flex-1 min-w-[150px]">
       <h3 className="text-5xl md:text-6xl font-bold text-white mb-2">
-        {inView ? (
-          <CountUp end={end} duration={duration} separator={separator} />
-        ) : (
-          "0"
-        )}
+        {inView ? <CountUp end={end} duration={duration} separator={separator} /> : "0"}
         {suffix}
       </h3>
       <p className="text-gray-400 text-base md:text-lg">{label}</p>
@@ -39,9 +35,9 @@ export default function Home() {
     <main className="bg-black text-white overflow-x-hidden">
       {/* ===== HEADER ===== */}
       <header className="fixed top-0 left-0 w-full z-30 bg-black/30 backdrop-blur-md py-4 px-6 md:px-10 flex justify-between items-center">
-        <a href="/" className="text-2xl font-bold tracking-wide">
+        <Link href="/" className="text-2xl font-bold tracking-wide">
           AlexFilms
-        </a>
+        </Link>
         <nav className="hidden md:flex gap-8 text-gray-300 text-sm uppercase tracking-wider">
           <Link href="/about" className="hover:text-white transition">
             About
@@ -97,19 +93,18 @@ export default function Home() {
             Cinematic Videography & Professional Drone Pilot
           </motion.p>
 
-          <motion.a
-            href="/portfolio"
+          <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.35, duration: 1 }}
-            whileHover={{
-              scale: 1.05,
-              boxShadow: "0px 0px 30px rgba(255,255,255,0.2)",
-            }}
-            className="inline-block mt-8 rounded-full px-8 py-3 bg-white text-black font-semibold shadow-lg transition-all duration-300"
           >
-            Watch My Work
-          </motion.a>
+            <Link
+              href="/portfolio"
+              className="inline-block mt-8 rounded-full px-8 py-3 bg-white text-black font-semibold shadow-lg transition-all duration-300"
+            >
+              Watch My Work
+            </Link>
+          </motion.div>
         </div>
       </section>
 
@@ -169,50 +164,30 @@ export default function Home() {
       >
         <h2 className="text-4xl font-bold mb-12">Featured Projects</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl w-full">
-          <div className="aspect-video w-full rounded-xl overflow-hidden shadow-lg">
-            <iframe
-              className="w-full h-full"
-              src="https://www.youtube.com/embed/dNgVbNkXi3Q?si=F08pVivNc3VGCaYr"
-              title="Project 1"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-            ></iframe>
-          </div>
-          <div className="aspect-video w-full rounded-xl overflow-hidden shadow-lg">
-            <iframe
-              className="w-full h-full"
-              src="https://www.youtube.com/embed/-sZ3hP8bK6U?si=djJwXqZ2Lm700yeE"
-              title="Project 2"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-            ></iframe>
-          </div>
-          <div className="aspect-video w-full rounded-xl overflow-hidden shadow-lg">
-            <iframe
-              className="w-full h-full"
-              src="https://www.youtube.com/embed/Upn-O-M5Mic?si=hgwVE8Fr-35x1tVG"
-              title="Project 3"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-            ></iframe>
-          </div>
-          <div className="aspect-video w-full rounded-xl overflow-hidden shadow-lg">
-            <iframe
-              className="w-full h-full"
-              src="https://www.youtube.com/embed/0187mui9mDY?si=4Nsg4_BfW-px1C4k"
-              title="Project 4"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-            ></iframe>
-          </div>
+          {[
+            "dNgVbNkXi3Q",
+            "-sZ3hP8bK6U",
+            "Upn-O-M5Mic",
+            "0187mui9mDY",
+          ].map((id, idx) => (
+            <div key={idx} className="aspect-video w-full rounded-xl overflow-hidden shadow-lg">
+              <iframe
+                className="w-full h-full"
+                src={`https://www.youtube.com/embed/${id}`}
+                title={`Project ${idx + 1}`}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+              ></iframe>
+            </div>
+          ))}
         </div>
 
-        <a
+        <Link
           href="/portfolio"
           className="mt-16 px-8 py-3 bg-white text-black font-semibold rounded-full hover:bg-gray-200 transition"
         >
           See Full Portfolio
-        </a>
+        </Link>
       </section>
 
       {/* Divider Line */}
@@ -228,12 +203,12 @@ export default function Home() {
           Interested in cinematic FPV or professional videography for your next
           project?
         </p>
-        <a
+        <Link
           href="/contact"
           className="inline-block bg-white text-black px-8 py-3 rounded-full font-semibold hover:bg-gray-200 transition"
         >
           Contact Me
-        </a>
+        </Link>
       </section>
 
       {/* ===== FOOTER ===== */}

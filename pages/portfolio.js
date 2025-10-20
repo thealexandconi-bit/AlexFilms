@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link"; // ✅ import Link for internal navigation
 
 export default function Portfolio() {
   const sections = [
@@ -52,19 +53,19 @@ export default function Portfolio() {
     <main className="relative bg-black text-white overflow-hidden min-h-screen">
       {/* ===== HEADER ===== */}
       <header className="fixed top-0 left-0 w-full z-40 bg-black/30 backdrop-blur-md py-4 px-6 md:px-10 flex justify-between items-center">
-        <a href="/" className="text-2xl font-bold tracking-wide">
+        <Link href="/" className="text-2xl font-bold tracking-wide">
           AlexFilms
-        </a>
+        </Link>
         <nav className="hidden md:flex gap-8 text-gray-300 text-sm uppercase tracking-wider">
-          <a href="/about" className="hover:text-white transition">
+          <Link href="/about" className="hover:text-white transition">
             About
-          </a>
-          <a href="/portfolio" className="text-white font-semibold">
+          </Link>
+          <Link href="/portfolio" className="text-white font-semibold">
             Portfolio
-          </a>
-          <a href="/contact" className="hover:text-white transition">
+          </Link>
+          <Link href="/contact" className="hover:text-white transition">
             Contact
-          </a>
+          </Link>
         </nav>
       </header>
 
@@ -73,15 +74,15 @@ export default function Portfolio() {
         <div className="absolute inset-0 grid grid-cols-1 sm:grid-cols-2 grid-rows-2 gap-0 w-full h-full z-0">
           {[1, 2, 3, 4].map((i) => (
             <video
-  key={i}
-  src={`https://pub-46816b9fcf1445efbe847da23ac5d27e.r2.dev/video${i}.mp4`}
-  autoPlay
-  loop
-  muted
-  playsInline
-  preload="auto"
-  className="object-cover w-full h-full opacity-60"
-/>
+              key={i}
+              src={`https://pub-46816b9fcf1445efbe847da23ac5d27e.r2.dev/video${i}.mp4`}
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              className="object-cover w-full h-full opacity-60"
+            />
           ))}
         </div>
 
@@ -94,7 +95,7 @@ export default function Portfolio() {
             Portfolio
           </h1>
           <p className="mt-6 text-gray-300 text-sm md:text-base max-w-md mx-auto leading-relaxed">
-            FPV fly-throughs · Cinematic drone shots · Stabilized gimbal footage · Professional Editing and Colorgrading ·  Story-driven videos for brands, events, restaurants, hotels and many more!
+            FPV fly-throughs · Cinematic drone shots · Stabilized gimbal footage · Professional Editing and Colorgrading · Story-driven videos for brands, events, restaurants, hotels and many more!
           </p>
         </div>
       </section>
@@ -102,7 +103,6 @@ export default function Portfolio() {
       {/* ===== CREATIVE SECTIONS ===== */}
       {sections.map((section) => (
         <React.Fragment key={section.id}>
-          {/* Divider Line */}
           <div className="flex justify-center py-12">
             <hr className="border-t-2 border-white w-1/3 opacity-70" />
           </div>
@@ -112,7 +112,6 @@ export default function Portfolio() {
               section.reverse ? "md:flex-row-reverse" : ""
             }`}
           >
-            {/* Vertical Video */}
             <div className="w-full md:w-1/2 flex justify-center">
               <video
                 src={section.video}
@@ -125,25 +124,18 @@ export default function Portfolio() {
               />
             </div>
 
-            {/* Text */}
             <div className="w-full md:w-1/2 max-w-lg text-center md:text-left">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                {section.title}
-              </h2>
-              <p className="text-gray-400 leading-relaxed text-base md:text-lg">
-                {section.text}
-              </p>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">{section.title}</h2>
+              <p className="text-gray-400 leading-relaxed text-base md:text-lg">{section.text}</p>
             </div>
           </section>
         </React.Fragment>
       ))}
 
-      {/* Final Divider */}
       <div className="flex justify-center py-12">
         <hr className="border-t-2 border-white w-1/3 opacity-70" />
       </div>
 
-      {/* ===== FOOTER ===== */}
       <footer className="py-10 text-center text-gray-500 border-t border-gray-800">
         © 2025 AlexFilms – Cinematic Videography & Drone Production | All rights reserved
       </footer>

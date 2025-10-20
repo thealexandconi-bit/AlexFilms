@@ -1,23 +1,24 @@
 import React from "react";
+import Link from "next/link";
 
 export default function Contact() {
   return (
     <main className="relative bg-black text-white overflow-hidden min-h-screen">
       {/* ===== HEADER ===== */}
       <header className="fixed top-0 left-0 w-full z-40 bg-black/30 backdrop-blur-md py-4 px-6 md:px-10 flex justify-between items-center">
-        <a href="/" className="text-2xl font-bold tracking-wide">
+        <Link href="/" className="text-2xl font-bold tracking-wide">
           AlexFilms
-        </a>
+        </Link>
         <nav className="hidden md:flex gap-8 text-gray-300 text-sm uppercase tracking-wider">
-          <a href="/about" className="hover:text-white transition">
+          <Link href="/about" className="hover:text-white transition">
             About
-          </a>
-          <a href="/portfolio" className="hover:text-white transition">
+          </Link>
+          <Link href="/portfolio" className="hover:text-white transition">
             Portfolio
-          </a>
-          <a href="/contact" className="text-white font-semibold">
+          </Link>
+          <Link href="/contact" className="text-white font-semibold">
             Contact
-          </a>
+          </Link>
         </nav>
       </header>
 
@@ -52,7 +53,7 @@ export default function Contact() {
       {/* ===== CONTACT FORM ===== */}
       <section className="relative px-6 md:px-20 py-10 max-w-4xl mx-auto">
         <form
-          action="https://formspree.io/f/mwpkylge" // your connected Formspree endpoint
+          action="https://formspree.io/f/mwpkylge"
           method="POST"
           className="grid grid-cols-1 md:grid-cols-2 gap-8"
         >
