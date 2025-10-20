@@ -6,49 +6,48 @@ export default function Portfolio() {
       id: 1,
       title: "Creating Music Videos",
       text: "I build edits with precise timing and clean structure. Every cut is intentional — driven by story and purpose, not random beats. This approach delivers videos that are clear, engaging, and professionally finished for commercial use.",
-      video: "/videos/vertical1.mp4",
+      video: "https://pub-46816b9fcf1445efbe847da23ac5d27e.r2.dev/vertical1.mp4",
       reverse: false,
     },
     {
-     id: 2,
-  title: "City Showreels & Tourism Board Films",
-  text: <>
-    I produce cinematic city and tourism films that highlight key attractions,
-    atmosphere, and identity in a clear and engaging way. The goal is to help
-    destinations stand out and attract visitors through high-quality visual
-    storytelling. My cinematic Thailand video has already reached more than
-    115,000 viewers and received over 1,000 positive comments from people who
-    resonated with the story.
-    <br />
-    <a
-      href="https://youtu.be/Upn-O-M5Mic?si=LxcGIy5dPKTlfUQ6"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="underline"
-    >
-      Watch it here
-    </a>
-  </>,
-  video: "/videos/vertical2.mp4",
-  reverse: true,
+      id: 2,
+      title: "City Showreels & Tourism Board Films",
+      text: <>
+        I produce cinematic city and tourism films that highlight key attractions,
+        atmosphere, and identity in a clear and engaging way. The goal is to help
+        destinations stand out and attract visitors through high-quality visual
+        storytelling. My cinematic Thailand video has already reached more than
+        115,000 viewers and received over 1,000 positive comments from people who
+        resonated with the story.
+        <br />
+        <a
+          href="https://youtu.be/Upn-O-M5Mic?si=LxcGIy5dPKTlfUQ6"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline"
+        >
+          Watch it here
+        </a>
+      </>,
+      video: "https://pub-46816b9fcf1445efbe847da23ac5d27e.r2.dev/vertical2.mp4",
+      reverse: true,
     },
     {
       id: 3,
       title: "Reaching the Unreachable",
       text: "Using the DJI Mavic 3 Pro, I access peaks, islands, and remote corners that are otherwise unreachable. I capture cinematic aerial perspectives with precision and clarity, delivering visuals that were previously impossible to film.",
-      video: "/videos/vertical3.mp4",
+      video: "https://pub-46816b9fcf1445efbe847da23ac5d27e.r2.dev/vertical3.mp4",
       reverse: false,
     },
     {
       id: 4,
       title: "FPV Drone Cinematics",
       text: "I use the ultra-light Flywoo Flylens 85 paired with the DJI O4 Air Unit Pro — a sub-100g FPV drone that delivers smooth, color-graded footage in both indoor and outdoor environments. Its agility allows me to film tight spaces and dynamic angles that larger drones can’t reach.",
-      video: "/videos/vertical4.mp4",
+      video: "https://pub-46816b9fcf1445efbe847da23ac5d27e.r2.dev/vertical4.mp4",
       reverse: true,
     },
   ];
 
-  // ✅ return MUST be inside this function
   return (
     <main className="relative bg-black text-white overflow-hidden min-h-screen">
       {/* ===== HEADER ===== */}
@@ -71,18 +70,18 @@ export default function Portfolio() {
 
       {/* ===== BACKGROUND GRID VIDEOS ===== */}
       <section className="relative flex items-center justify-center min-h-screen overflow-hidden">
-        <div className="absolute inset-0 grid grid-cols-1 sm:grid-cols-2 grid-rows-2 w-full h-full z-0">
+        <div className="absolute inset-0 grid grid-cols-1 sm:grid-cols-2 grid-rows-2 gap-0 w-full h-full z-0">
           {[1, 2, 3, 4].map((i) => (
             <video
-              key={i}
-              src={`/videos/video${i}.mp4`}
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="auto"
-              className="object-cover w-full h-full opacity-60"
-            />
+  key={i}
+  src={`https://pub-46816b9fcf1445efbe847da23ac5d27e.r2.dev/video${i}.mp4`}
+  autoPlay
+  loop
+  muted
+  playsInline
+  preload="auto"
+  className="object-cover w-full h-full opacity-60"
+/>
           ))}
         </div>
 
@@ -101,7 +100,7 @@ export default function Portfolio() {
       </section>
 
       {/* ===== CREATIVE SECTIONS ===== */}
-      {sections.map((section, index) => (
+      {sections.map((section) => (
         <React.Fragment key={section.id}>
           {/* Divider Line */}
           <div className="flex justify-center py-12">
