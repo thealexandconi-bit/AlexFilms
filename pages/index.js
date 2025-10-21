@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
 import Link from "next/link";
+import Header from "../components/Header";
 
 // === Small reusable stat component ===
 function Stat({ end, suffix = "+", label, duration = 3, separator = "," }) {
@@ -22,76 +23,30 @@ function Stat({ end, suffix = "+", label, duration = 3, separator = "," }) {
 }
 
 export default function Home() {
-  const [isMobile, setIsMobile] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
   return (
     <main className="bg-black text-white overflow-x-hidden">
       {/* ===== HEADER ===== */}
-      <header className="fixed top-0 left-0 w-full z-30 bg-black/30 backdrop-blur-md py-4 px-6 md:px-10 flex justify-between items-center">
-        <Link href="/" className="text-2xl font-bold tracking-wide">
-          AlexFilms
-        </Link>
-
-        {/* Desktop nav */}
-        <nav className="hidden md:flex gap-8 text-gray-300 text-sm uppercase tracking-wider">
-          <Link href="/about" className="hover:text-white transition">About</Link>
-          <Link href="/portfolio" className="hover:text-white transition">Portfolio</Link>
-          <Link href="/contact" className="hover:text-white transition">Contact</Link>
-        </nav>
-
-        {/* Mobile hamburger */}
-        {isMobile && (
-          <div className="md:hidden relative">
-            <button
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="flex flex-col gap-1"
-            >
-              <span className="block w-6 h-0.5 bg-white"></span>
-              <span className="block w-6 h-0.5 bg-white"></span>
-              <span className="block w-6 h-0.5 bg-white"></span>
-            </button>
-
-            {menuOpen && (
-              <div className="absolute right-0 mt-2 w-40 bg-black/90 rounded shadow-lg flex flex-col">
-                <Link href="/about" className="px-4 py-2 hover:bg-white/20 transition">About</Link>
-                <Link href="/portfolio" className="px-4 py-2 hover:bg-white/20 transition">Portfolio</Link>
-                <Link href="/contact" className="px-4 py-2 hover:bg-white/20 transition">Contact</Link>
-              </div>
-            )}
-          </div>
-        )}
-      </header>
+      <Header />
 
       {/* ===== HERO SECTION ===== */}
       <section className="relative h-screen w-full overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0">
-          {!isMobile ? (
-            <iframe
-              className="w-full h-full"
-              src="https://www.youtube.com/embed/USBaG4rg0Is?autoplay=1&mute=1&loop=1&playlist=USBaG4rg0Is&controls=0&showinfo=0&modestbranding=1"
-              title="AlexFilms Intro"
-              frameBorder="0"
-              allow="autoplay; fullscreen"
-              allowFullScreen
-            ></iframe>
-          ) : (
-            <video
-              src="https://pub-46816b9fcf1445efbe847da23ac5d27e.r2.dev/vertical5.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="w-full h-full object-cover"
-            ></video>
-          )}
+          <iframe
+            className="w-full h-full md:block hidden"
+            src="https://www.youtube.com/embed/USBaG4rg0Is?autoplay=1&mute=1&loop=1&playlist=USBaG4rg0Is&controls=0&showinfo=0&modestbranding=1"
+            title="AlexFilms Intro"
+            frameBorder="0"
+            allow="autoplay; fullscreen"
+            allowFullScreen
+          ></iframe>
+          <video
+            className="w-full h-full object-cover md:hidden"
+            src="https://pub-46816b9fcf1445efbe847da23ac5d27e.r2.dev/vertical5.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+          ></video>
           <div className="absolute inset-0 bg-black/60"></div>
         </div>
 
@@ -152,7 +107,7 @@ export default function Home() {
           <h2 className="text-4xl font-bold mb-6">Who is Alex?</h2>
           <p className="text-gray-300 leading-relaxed mb-4">
             I’m a filmmaker and drone pilot passionate about capturing the world
-            through movement and emotion. From remote mountain peaks to vibrant
+            through movement and unique perspectives. From remote mountain peaks to vibrant
             cities, I aim to tell stories that immerse the viewer in each
             moment.
           </p>
@@ -175,9 +130,9 @@ export default function Home() {
       <section className="py-24 bg-black/80 text-center">
         <h2 className="text-3xl font-bold mb-12">My Journey in Numbers</h2>
         <div className="flex flex-col md:flex-row justify-center gap-10 md:gap-24 px-6 md:px-24">
-          <Stat end={40} label="Countries Filmed" />
-          <Stat end={300} label="Hours of Flight Time" />
-          <Stat end={500000} label="Organic Views" />
+          <Stat end={50} label="Different Projects Filmed" />
+          <Stat end={300} label="Hours of Drone Flight Experience" />
+          <Stat end={500000} label="Organic Worldwide Views" />
         </div>
       </section>
 

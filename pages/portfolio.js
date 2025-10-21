@@ -1,14 +1,15 @@
 import React from "react";
-import Link from "next/link"; // ✅ import Link for internal navigation
+import Link from "next/link";
+import Header from "../components/Header";
 
 export default function Portfolio() {
   const sections = [
     {
       id: 1,
-      title: "Creating Music Videos",
-      text: "I build edits with precise timing and clean structure. Every cut is intentional — driven by story and purpose, not random beats. This approach delivers videos that are clear, engaging, and professionally finished for commercial use.",
-      video: "https://pub-46816b9fcf1445efbe847da23ac5d27e.r2.dev/vertical1.mp4",
-      reverse: false,
+      title: "FPV Drone Cinematics",
+      text: "I use the ultra-light Flywoo Flylens 85 paired with the DJI O4 Air Unit Pro — a sub-100g FPV drone that delivers smooth, color-graded footage in both indoor and outdoor environments. Its agility allows me to film tight spaces and dynamic angles that larger drones can’t reach.",
+      video: "https://pub-46816b9fcf1445efbe847da23ac5d27e.r2.dev/vertical4.mp4",
+      reverse: true,
     },
     {
       id: 2,
@@ -35,39 +36,24 @@ export default function Portfolio() {
     },
     {
       id: 3,
-      title: "Reaching the Unreachable",
-      text: "Using the DJI Mavic 3 Pro, I access peaks, islands, and remote corners that are otherwise unreachable. I capture cinematic aerial perspectives with precision and clarity, delivering visuals that were previously impossible to film.",
-      video: "https://pub-46816b9fcf1445efbe847da23ac5d27e.r2.dev/vertical3.mp4",
+      title: "Creating Music Videos",
+      text: "I build edits with precise timing and clean structure. Every cut is intentional — driven by story and purpose, not random beats. This approach delivers videos that are clear, engaging, and professionally finished for commercial use.",
+      video: "https://pub-46816b9fcf1445efbe847da23ac5d27e.r2.dev/vertical1.mp4",
       reverse: false,
     },
     {
       id: 4,
-      title: "FPV Drone Cinematics",
-      text: "I use the ultra-light Flywoo Flylens 85 paired with the DJI O4 Air Unit Pro — a sub-100g FPV drone that delivers smooth, color-graded footage in both indoor and outdoor environments. Its agility allows me to film tight spaces and dynamic angles that larger drones can’t reach.",
-      video: "https://pub-46816b9fcf1445efbe847da23ac5d27e.r2.dev/vertical4.mp4",
-      reverse: true,
+      title: "Reaching the Unreachable",
+      text: "Using the DJI Mavic 3 Pro, I access peaks, islands, and remote corners that are otherwise unreachable. I capture cinematic aerial perspectives with precision and clarity, delivering visuals that were previously impossible to film.",
+      video: "https://pub-46816b9fcf1445efbe847da23ac5d27e.r2.dev/vertical3.mp4",
+      reverse: false,
     },
   ];
 
   return (
     <main className="relative bg-black text-white overflow-hidden min-h-screen">
       {/* ===== HEADER ===== */}
-      <header className="fixed top-0 left-0 w-full z-40 bg-black/30 backdrop-blur-md py-4 px-6 md:px-10 flex justify-between items-center">
-        <Link href="/" className="text-2xl font-bold tracking-wide">
-          AlexFilms
-        </Link>
-        <nav className="hidden md:flex gap-8 text-gray-300 text-sm uppercase tracking-wider">
-          <Link href="/about" className="hover:text-white transition">
-            About
-          </Link>
-          <Link href="/portfolio" className="text-white font-semibold">
-            Portfolio
-          </Link>
-          <Link href="/contact" className="hover:text-white transition">
-            Contact
-          </Link>
-        </nav>
-      </header>
+      <Header />
 
       {/* ===== BACKGROUND GRID VIDEOS ===== */}
       <section className="relative flex items-center justify-center min-h-screen overflow-hidden">
@@ -100,12 +86,22 @@ export default function Portfolio() {
         </div>
       </section>
 
+      {/* ===== "My Expertise" TITLE ===== */}
+      <section className="text-center py-16">
+        <h2 className="text-4xl md:text-5xl font-bold uppercase tracking-wide">
+          My Expertise
+        </h2>
+      </section>
+
       {/* ===== CREATIVE SECTIONS ===== */}
-      {sections.map((section) => (
+      {sections.map((section, index) => (
         <React.Fragment key={section.id}>
-          <div className="flex justify-center py-12">
-            <hr className="border-t-2 border-white w-1/3 opacity-70" />
-          </div>
+          {/* Add divider line only after the first section */}
+          {index !== 0 && (
+            <div className="flex justify-center py-12">
+              <hr className="border-t-2 border-white w-1/3 opacity-70" />
+            </div>
+          )}
 
           <section
             className={`flex flex-col md:flex-row items-center justify-center gap-12 md:gap-20 px-6 md:px-20 py-16 ${

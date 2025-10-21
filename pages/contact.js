@@ -1,27 +1,13 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image"; // <-- added import
+import Image from "next/image";
+import Header from "../components/Header";
 
 export default function Contact() {
   return (
     <main className="relative bg-black text-white overflow-hidden min-h-screen">
       {/* ===== HEADER ===== */}
-      <header className="fixed top-0 left-0 w-full z-40 bg-black/30 backdrop-blur-md py-4 px-6 md:px-10 flex justify-between items-center">
-        <Link href="/" className="text-2xl font-bold tracking-wide">
-          AlexFilms
-        </Link>
-        <nav className="hidden md:flex gap-8 text-gray-300 text-sm uppercase tracking-wider">
-          <Link href="/about" className="hover:text-white transition">
-            About
-          </Link>
-          <Link href="/portfolio" className="hover:text-white transition">
-            Portfolio
-          </Link>
-          <Link href="/contact" className="text-white font-semibold">
-            Contact
-          </Link>
-        </nav>
-      </header>
+      <Header />
 
       {/* ===== HERO SECTION ===== */}
       <section className="relative flex items-center justify-center min-h-[70vh] px-6 text-center overflow-hidden">
