@@ -23,6 +23,7 @@ function Stat({ end, suffix = "+", label, duration = 3, separator = "," }) {
 
 export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -38,17 +39,35 @@ export default function Home() {
         <Link href="/" className="text-2xl font-bold tracking-wide">
           AlexFilms
         </Link>
+
+        {/* Desktop nav */}
         <nav className="hidden md:flex gap-8 text-gray-300 text-sm uppercase tracking-wider">
-          <Link href="/about" className="hover:text-white transition">
-            About
-          </Link>
-          <Link href="/portfolio" className="hover:text-white transition">
-            Portfolio
-          </Link>
-          <Link href="/contact" className="hover:text-white transition">
-            Contact
-          </Link>
+          <Link href="/about" className="hover:text-white transition">About</Link>
+          <Link href="/portfolio" className="hover:text-white transition">Portfolio</Link>
+          <Link href="/contact" className="hover:text-white transition">Contact</Link>
         </nav>
+
+        {/* Mobile hamburger */}
+        {isMobile && (
+          <div className="md:hidden relative">
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="flex flex-col gap-1"
+            >
+              <span className="block w-6 h-0.5 bg-white"></span>
+              <span className="block w-6 h-0.5 bg-white"></span>
+              <span className="block w-6 h-0.5 bg-white"></span>
+            </button>
+
+            {menuOpen && (
+              <div className="absolute right-0 mt-2 w-40 bg-black/90 rounded shadow-lg flex flex-col">
+                <Link href="/about" className="px-4 py-2 hover:bg-white/20 transition">About</Link>
+                <Link href="/portfolio" className="px-4 py-2 hover:bg-white/20 transition">Portfolio</Link>
+                <Link href="/contact" className="px-4 py-2 hover:bg-white/20 transition">Contact</Link>
+              </div>
+            )}
+          </div>
+        )}
       </header>
 
       {/* ===== HERO SECTION ===== */}
@@ -65,13 +84,13 @@ export default function Home() {
             ></iframe>
           ) : (
             <video
-    src="https://pub-46816b9fcf1445efbe847da23ac5d27e.r2.dev/vertical5.mp4"
-    autoPlay
-    muted
-    loop
-    playsInline
-    className="w-full h-full object-cover"
-  ></video>
+              src="https://pub-46816b9fcf1445efbe847da23ac5d27e.r2.dev/vertical5.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-full object-cover"
+            ></video>
           )}
           <div className="absolute inset-0 bg-black/60"></div>
         </div>
@@ -137,9 +156,15 @@ export default function Home() {
             cities, I aim to tell stories that immerse the viewer in each
             moment.
           </p>
-          <p className="text-gray-400 italic">
+          <p className="text-gray-400 italic mb-4">
             Every flight, every shot — one story closer to perfection.
           </p>
+          <Link
+            href="/about"
+            className="inline-block mt-2 rounded-full px-6 py-2 bg-white text-black font-semibold hover:bg-gray-200 transition"
+          >
+            Learn More About Me
+          </Link>
         </motion.div>
       </section>
 
@@ -149,7 +174,6 @@ export default function Home() {
       {/* ===== STATS SECTION ===== */}
       <section className="py-24 bg-black/80 text-center">
         <h2 className="text-3xl font-bold mb-12">My Journey in Numbers</h2>
-
         <div className="flex flex-col md:flex-row justify-center gap-10 md:gap-24 px-6 md:px-24">
           <Stat end={40} label="Countries Filmed" />
           <Stat end={300} label="Hours of Flight Time" />
@@ -167,12 +191,7 @@ export default function Home() {
       >
         <h2 className="text-4xl font-bold mb-12">Featured Projects</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl w-full">
-          {[
-            "dNgVbNkXi3Q",
-            "-sZ3hP8bK6U",
-            "Upn-O-M5Mic",
-            "0187mui9mDY",
-          ].map((id, idx) => (
+          {["dNgVbNkXi3Q", "-sZ3hP8bK6U", "Upn-O-M5Mic", "0187mui9mDY"].map((id, idx) => (
             <div key={idx} className="aspect-video w-full rounded-xl overflow-hidden shadow-lg">
               <iframe
                 className="w-full h-full"
