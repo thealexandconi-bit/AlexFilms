@@ -64,11 +64,14 @@ export default function Home() {
               allowFullScreen
             ></iframe>
           ) : (
-            <img
-              src="/images/video1.png"
-              alt="Cinematic FPV Background"
-              className="w-full h-full object-cover"
-            />
+            <video
+    src="https://pub-46816b9fcf1445efbe847da23ac5d27e.r2.dev/vertical5.mp4"
+    autoPlay
+    muted
+    loop
+    playsInline
+    className="w-full h-full object-cover"
+  ></video>
           )}
           <div className="absolute inset-0 bg-black/60"></div>
         </div>
