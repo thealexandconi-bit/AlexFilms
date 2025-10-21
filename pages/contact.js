@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image"; // <-- added import
 
 export default function Contact() {
   return (
@@ -25,10 +26,11 @@ export default function Contact() {
       {/* ===== HERO SECTION ===== */}
       <section className="relative flex items-center justify-center min-h-[70vh] px-6 text-center overflow-hidden">
         {/* Background Image */}
-        <img
+        <Image
           src="/images/contact.jpg"
           alt="Contact background"
-          className="absolute inset-0 w-full h-full object-cover object-center opacity-80"
+          fill
+          className="object-cover object-center opacity-80 absolute inset-0"
         />
 
         {/* Dark overlay */}
@@ -53,7 +55,7 @@ export default function Contact() {
       {/* ===== CONTACT FORM ===== */}
       <section className="relative px-6 md:px-20 py-10 max-w-4xl mx-auto">
         <form
-          action="https://formspree.io/f/mwpkylge"
+          action="https://formspree.io/f/xovkbdeb"
           method="POST"
           className="grid grid-cols-1 md:grid-cols-2 gap-8"
         >
