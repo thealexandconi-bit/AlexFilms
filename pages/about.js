@@ -4,6 +4,8 @@ import Header from "../components/Header";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
 
+
+
 export default function About() {
   const { ref, inView } = useInView({ triggerOnce: true });
 
