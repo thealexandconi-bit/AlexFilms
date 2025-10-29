@@ -116,10 +116,7 @@ export default function Contact() {
         </form>
       </section>
 
-      {/* ===== FOOTER ===== */}
-      <footer className="text-center text-gray-500 text-xs py-10 tracking-wider">
-        © {new Date().getFullYear()} AlexFilms — All Rights Reserved.
-      </footer>
+      
     </main>
   );
 }

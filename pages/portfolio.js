@@ -132,9 +132,7 @@ export default function Portfolio() {
         <hr className="border-t-2 border-white w-1/3 opacity-70" />
       </div>
 
-      <footer className="py-10 text-center text-gray-500 border-t border-gray-800">
-        © 2025 AlexFilms – Cinematic Videography & Drone Production | All rights reserved
-      </footer>
+      
     </main>
   );
 }
