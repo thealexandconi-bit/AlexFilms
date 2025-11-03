@@ -2,10 +2,13 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import LanguageSelector from "./LanguageSelector";
+import { useI18n } from "@/context/I18nContext";
 
 export default function Header() {
   const [isMobile, setIsMobile] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const { t } = useI18n();
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -21,10 +24,11 @@ export default function Header() {
       </Link>
 
       {/* Desktop nav */}
-      <nav className="hidden md:flex gap-8 text-gray-300 text-sm uppercase tracking-wider">
-        <Link href="/about" className="hover:text-white transition">About</Link>
-        <Link href="/portfolio" className="hover:text-white transition">Portfolio</Link>
-        <Link href="/contact" className="hover:text-white transition">Contact</Link>
+      <nav className="hidden md:flex gap-8 text-gray-300 text-sm uppercase tracking-wider items-center">
+        <Link href="/about" className="hover:text-white transition">{t("about")}</Link>
+        <Link href="/portfolio" className="hover:text-white transition">{t("portfolio")}</Link>
+        <Link href="/contact" className="hover:text-white transition">{t("contact")}</Link>
+        <LanguageSelector />
       </nav>
 
       {/* Mobile dropdown */}
@@ -41,9 +45,12 @@ export default function Header() {
 
           {isDropdownOpen && (
             <div className="absolute right-0 mt-2 w-40 bg-black border border-gray-700 rounded shadow-lg flex flex-col">
-              <Link href="/about" className="px-4 py-2 hover:bg-gray-800">About</Link>
-              <Link href="/portfolio" className="px-4 py-2 hover:bg-gray-800">Portfolio</Link>
-              <Link href="/contact" className="px-4 py-2 hover:bg-gray-800">Contact</Link>
+              <Link href="/about" className="px-4 py-2 hover:bg-gray-800">{t("about")}</Link>
+              <Link href="/portfolio" className="px-4 py-2 hover:bg-gray-800">{t("portfolio")}</Link>
+              <Link href="/contact" className="px-4 py-2 hover:bg-gray-800">{t("contact")}</Link>
+              <div className="px-4 py-2 border-t border-gray-700">
+                <LanguageSelector />
+              </div>
             </div>
           )}
         </div>
