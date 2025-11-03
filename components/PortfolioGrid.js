@@ -1,4 +1,4 @@
-import { useI18n } from "@/context/I18nContext";
+import { useI18n } from '@/i18n/I18nProvider';
 
 export default function PortfolioGrid() {
   const { t } = useI18n();

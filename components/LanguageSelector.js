@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Globe } from "lucide-react";
-import { useI18n } from "@/context/I18nContext";
+import { useI18n } from "@/i18n/I18nProvider";
 
 const languages = [
   { code: "en", name: "English", flag: "🇬🇧" },

@@ -3,7 +3,9 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import LanguageSelector from "./LanguageSelector";
-import { useI18n } from "@/context/I18nContext";
+import { useI18n } from '@/i18n/I18nProvider';
+
+
 
 export default function Header() {
   const [isMobile, setIsMobile] = useState(false);

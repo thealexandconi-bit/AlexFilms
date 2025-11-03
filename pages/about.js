@@ -5,7 +5,7 @@ import Image from "next/image";
 import Header from "../components/Header";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
-import { useI18n } from "@/context/I18nContext";
+import { useI18n } from '@/i18n/I18nProvider';
 
 export default function About() {
   const { ref, inView } = useInView({ triggerOnce: true });

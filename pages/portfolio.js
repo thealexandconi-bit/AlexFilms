@@ -2,7 +2,7 @@
 
 import React from "react";
 import Header from "../components/Header";
-import { useI18n } from "../context/I18nContext";
+import { useI18n } from '@/i18n/I18nProvider';
 
 export default function Portfolio() {
   const { t } = useI18n();
@@ -82,8 +82,8 @@ export default function Portfolio() {
             {t("portfolio")}
           </h1>
           <p className="mt-6 text-gray-300 text-sm md:text-base max-w-md mx-auto leading-relaxed">
-            FPV fly-throughs · Cinematic drone shots · Stabilized gimbal footage · Professional Editing and Colorgrading · Story-driven videos for brands, events, restaurants, hotels and many more!
-          </p>
+  {t("portfolio_intro")}
+</p>
         </div>
       </section>
 

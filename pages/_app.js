@@ -1,14 +1,11 @@
-"use client";
-
 import "@/styles/globals.css";
-import type { AppProps } from "next/app";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { I18nProvider } from "../context/I18nContext"; // ⬅️ import the provider (use relative path)
+import { I18nProvider } from "@/i18n/I18nProvider";
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps }) {
   return (
-    <I18nProvider> {/* ⬅️ wrap everything here */}
+    <I18nProvider>
       <main className="bg-black text-white min-h-screen flex flex-col">
         <Header />
         <div className="flex-grow">
