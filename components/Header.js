@@ -3,9 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import LanguageSelector from "./LanguageSelector";
-import { useI18n } from '@/i18n/I18nProvider';
-
-
+import { useI18n } from "@/i18n/I18nProvider";
 
 export default function Header() {
   const [isMobile, setIsMobile] = useState(false);
@@ -33,28 +31,31 @@ export default function Header() {
         <LanguageSelector />
       </nav>
 
-      {/* Mobile dropdown */}
+      {/* Mobile header right section */}
       {isMobile && (
-        <div className="relative">
-          <button
-            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="flex flex-col justify-between w-6 h-5 focus:outline-none"
-          >
-            <span className="block h-0.5 w-full bg-white"></span>
-            <span className="block h-0.5 w-full bg-white"></span>
-            <span className="block h-0.5 w-full bg-white"></span>
-          </button>
+        <div className="flex items-center gap-4">
+          {/* Language flag always visible */}
+          <LanguageSelector />
 
-          {isDropdownOpen && (
-            <div className="absolute right-0 mt-2 w-40 bg-black border border-gray-700 rounded shadow-lg flex flex-col">
-              <Link href="/about" className="px-4 py-2 hover:bg-gray-800">{t("about")}</Link>
-              <Link href="/portfolio" className="px-4 py-2 hover:bg-gray-800">{t("portfolio")}</Link>
-              <Link href="/contact" className="px-4 py-2 hover:bg-gray-800">{t("contact")}</Link>
-              <div className="px-4 py-2 border-t border-gray-700">
-                <LanguageSelector />
+          {/* Dropdown menu */}
+          <div className="relative">
+            <button
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              className="flex flex-col justify-between w-6 h-5 focus:outline-none"
+            >
+              <span className="block h-0.5 w-full bg-white"></span>
+              <span className="block h-0.5 w-full bg-white"></span>
+              <span className="block h-0.5 w-full bg-white"></span>
+            </button>
+
+            {isDropdownOpen && (
+              <div className="absolute right-0 mt-2 w-40 bg-black border border-gray-700 rounded shadow-lg flex flex-col text-gray-300 uppercase text-sm">
+                <Link href="/about" className="px-4 py-2 hover:bg-gray-800">{t("about")}</Link>
+                <Link href="/portfolio" className="px-4 py-2 hover:bg-gray-800">{t("portfolio")}</Link>
+                <Link href="/contact" className="px-4 py-2 hover:bg-gray-800">{t("contact")}</Link>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       )}
     </header>
