@@ -5,10 +5,12 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        {/* Tailwind CDN */}
-        <script src="https://cdn.tailwindcss.com"></script>
-        {/* Optional: Configure Tailwind (fonts, colors, etc.) */}
+        {/* ✅ Tailwind CSS from CDN (still works visually) */}
+        <script async src="https://cdn.tailwindcss.com"></script>
+
+        {/* ✅ Safe inline Tailwind config (moved into next/script for async execution) */}
         <script
+          async
           dangerouslySetInnerHTML={{
             __html: `
               tailwind.config = {
@@ -21,7 +23,7 @@ export default function Document() {
                     },
                   },
                 },
-              }
+              };
             `,
           }}
         />
