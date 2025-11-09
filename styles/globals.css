@@ -1,6 +1,8 @@
-/* globals.css */
+/* Tailwind Directives */
+@import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
 
-/* Colors and fonts */
+/* Your custom styles below */
 :root {
   --background: #ffffff;
   --foreground: #171717;
