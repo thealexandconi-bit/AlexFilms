@@ -1,5 +1,6 @@
 // components/Layout.js
 import Head from "next/head";
+import FloatingButton from "./FloatingButton";
 
 export const metadata = {
   title: "AlexFilms",
@@ -21,7 +22,10 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
       </Head>
-      <body>{children}</body>
+      <div>
+        {children}
+        <FloatingButton />
+      </div>
     </>
   );
 }

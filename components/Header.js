@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation"; // to detect current page
 import LanguageSelector from "./LanguageSelector";
 import { useI18n } from "@/i18n/I18nProvider";
 
@@ -9,6 +10,7 @@ export default function Header() {
   const [isMobile, setIsMobile] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { t } = useI18n();
+  const pathname = usePathname(); // Next.js hook to get current path
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -16,6 +18,22 @@ export default function Header() {
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
+
+  // Define all main nav links
+  const navLinks = [
+    { href: "/about", label: t("about") },
+    { href: "/portfolio", label: t("portfolio") },
+    { href: "/services", label: "Pricing" },
+    { href: "/contact", label: t("contact") },
+  ];
+
+  // Filter out the current page from the nav
+  const filteredLinks = navLinks.filter(link => link.href !== pathname);
+
+  // Always add "Home" if current page is not Home
+  if (pathname !== "/") {
+    filteredLinks.unshift({ href: "/", label: t("home") || "Home" });
+  }
 
   return (
     <header className="fixed top-0 left-0 w-full z-30 bg-black/30 backdrop-blur-md py-4 px-6 md:px-10 flex justify-between items-center">
@@ -25,16 +43,17 @@ export default function Header() {
 
       {/* Desktop nav */}
       <nav className="hidden md:flex gap-8 text-gray-300 text-sm uppercase tracking-wider items-center">
-        <Link href="/about" className="hover:text-white transition">{t("about")}</Link>
-        <Link href="/portfolio" className="hover:text-white transition">{t("portfolio")}</Link>
-        <Link href="/contact" className="hover:text-white transition">{t("contact")}</Link>
+        {filteredLinks.map(link => (
+          <Link key={link.href} href={link.href} className="hover:text-white transition">
+            {link.label}
+          </Link>
+        ))}
         <LanguageSelector />
       </nav>
 
       {/* Mobile header right section */}
       {isMobile && (
         <div className="flex items-center gap-4">
-          {/* Language flag always visible */}
           <LanguageSelector />
 
           {/* Dropdown menu */}
@@ -50,9 +69,16 @@ export default function Header() {
 
             {isDropdownOpen && (
               <div className="absolute right-0 mt-2 w-40 bg-black border border-gray-700 rounded shadow-lg flex flex-col text-gray-300 uppercase text-sm">
-                <Link href="/about" className="px-4 py-2 hover:bg-gray-800">{t("about")}</Link>
-                <Link href="/portfolio" className="px-4 py-2 hover:bg-gray-800">{t("portfolio")}</Link>
-                <Link href="/contact" className="px-4 py-2 hover:bg-gray-800">{t("contact")}</Link>
+                {filteredLinks.map(link => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="px-4 py-2 hover:bg-gray-800"
+                    onClick={() => setIsDropdownOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
               </div>
             )}
           </div>

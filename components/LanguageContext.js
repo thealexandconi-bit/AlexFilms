@@ -9,10 +9,16 @@ const LanguageContext = createContext();
 export const LanguageProvider = ({ children }) => {
   const [language, setLanguage] = useState("en"); // default: English
 
+  // The translation function
+  const t = (key) => {
+    const langSet = translations[language] || {};
+    return langSet[key] || key; // fallback: show the key if not found
+  };
+
   const value = {
     language,
     setLanguage,
-    t: translations[language], // shortcut for translation object
+    t,
   };
 
   return (

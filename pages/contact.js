@@ -1,12 +1,48 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Header from "../components/Header";
-import { useI18n } from '@/i18n/I18nProvider';
+import { useI18n } from "@/i18n/I18nProvider";
+import { useRouter } from "next/router";
 
 export default function Contact() {
   const { t } = useI18n();
+  const router = useRouter();
+  const [subject, setSubject] = useState("");
+
+  // Handle changing the service select and subject field
+  const handleServiceChange = (e) => {
+    const service = e.target.value;
+    if (!service) {
+      setSubject("");
+      return;
+    }
+    setSubject(`${service} Project: `);
+  };
+
+  useEffect(() => {
+    // Autofill if package is in query string
+    if (router.query.package) {
+      const pkg = router.query.package;
+      setSubject(`${pkg} Project: `);
+      const select = document.getElementById("service");
+      if (select) select.value = pkg;
+    }
+
+    // Smooth scroll to form if URL contains #contact-form
+    if (router.asPath.includes("#contact-form")) {
+      setTimeout(() => {
+        const el = document.getElementById("contact-form");
+        if (el) {
+          const yOffset = -80; // adjust for fixed header
+          const y =
+            el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: "smooth" });
+        }
+      }, 100); // small delay to ensure DOM rendered
+    }
+  }, [router.query.package, router.asPath]);
 
   return (
     <main className="relative bg-black text-white overflow-hidden min-h-screen">
@@ -35,7 +71,10 @@ export default function Contact() {
       <div className="w-full h-px bg-gray-700 my-12" />
 
       {/* ===== CONTACT FORM ===== */}
-      <section className="relative px-6 md:px-20 py-10 max-w-4xl mx-auto">
+      <section
+        id="contact-form"
+        className="relative px-6 md:px-20 py-10 max-w-4xl mx-auto"
+      >
         <form
           action="https://formspree.io/f/xovkbdeb"
           method="POST"
@@ -77,6 +116,36 @@ export default function Contact() {
             />
           </div>
 
+          {/* SERVICE SELECT */}
+          <div className="flex flex-col space-y-2 md:col-span-2">
+  <label
+    htmlFor="service"
+    className="text-sm uppercase tracking-wider text-gray-300"
+  >
+    {t("contact_select_service") || "Select Service"}
+  </label>
+  <select
+    id="service"
+    name="service"
+    onChange={handleServiceChange}
+    className="bg-transparent border border-gray-600 rounded-xl px-4 py-3 text-sm focus:border-white focus:outline-none transition"
+  >
+    <option value="">-- {t("contact_choose_service") || "Choose a service"} --</option>
+    <option value={t("services_package1_name")}>
+      {t("services_package1_name")} — {t("services_package1_price")}
+    </option>
+    <option value={t("services_package2_name")}>
+      {t("services_package2_name")} — {t("services_package2_price")}
+    </option>
+    <option value={t("services_package3_name")}>
+      {t("services_package3_name")} — {t("services_package3_price")}
+    </option>
+    <option value={t("services_package4_name")}>
+      {t("services_package4_name")} — {t("services_premium_text")}
+    </option>
+  </select>
+</div>
+
           {/* SUBJECT */}
           <div className="flex flex-col space-y-2 md:col-span-2">
             <label
@@ -89,7 +158,10 @@ export default function Contact() {
               type="text"
               name="subject"
               id="subject"
+              required
               placeholder={t("contact_subject_placeholder")}
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
               className="bg-transparent border border-gray-600 rounded-xl px-4 py-3 text-sm focus:border-white focus:outline-none transition"
             />
           </div>
