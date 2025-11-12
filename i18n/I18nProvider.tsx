@@ -7,7 +7,7 @@ import { de } from "./de";
 import { fr } from "./fr";
 import { Keys } from "./Keys";
 
-// Add all supported languages here
+// Define supported languages
 type Lang = "en" | "es" | "de" | "fr";
 
 type I18nContextType = {
@@ -21,11 +21,23 @@ const I18nContext = createContext<I18nContextType | undefined>(undefined);
 export const I18nProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [lang, setLang] = useState<Lang>("en");
 
-  // Map each language code to its translation file
-  const translations: Record<Lang, Record<Keys, string>> = { en, es, de, fr };
+  // Map each language code to its translation file; translation files may be partial
+  const translations = {
+    en,
+    es,
+    de,
+    fr,
+  } as Record<Lang, Partial<Record<Keys, string>>>;
 
-  // Translation function
-  const t = (key: Keys) => translations[lang][key] || key;
+  // ✅ Safe translation function (single definition)
+  const t = (key: Keys): string => {
+    const value = translations[lang][key];
+    if (!value) {
+      console.warn(`Missing translation for key "${key}" in "${lang}"`);
+      return key; // fallback to key name
+    }
+    return value;
+  };
 
   return (
     <I18nContext.Provider value={{ lang, setLang, t }}>

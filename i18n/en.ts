@@ -83,7 +83,6 @@ export const en: Record<Keys, string> = {
   contact_message: "Message",
   contact_message_placeholder: "Write your message here...",
   contact_send_button: "Send Message",
-  contact_select_placeholder: "Choose a package",
   contact_service_basic: "Basic Experience",
   contact_service_standard: "Standard Package",
   contact_service_full: "Full Experience",
@@ -178,5 +177,6 @@ export const en: Record<Keys, string> = {
   services_addon7: "Travel cost",
   services_addon7_price: "+€0.35/km",
   contact_select_service: "Select Service",
+  contact_select_placeholder: "Select a service",
 contact_choose_service: "Choose a service",
 };
