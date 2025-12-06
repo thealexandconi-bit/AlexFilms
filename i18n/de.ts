@@ -1,4 +1,3 @@
-// src/i18n/de.ts
 import { Keys } from "./Keys";
 
 export const de: Partial<Record<Keys, string>> = {
@@ -135,7 +134,7 @@ export const de: Partial<Record<Keys, string>> = {
   services_package3_extra3_price: "€120",
   services_package3_extra4: "Reels-Version (vertikal)",
   services_package3_extra4_price: "€40",
-  services_package3_extra5: "MusikkompositionMusik- und Audio-Feinabstimmung",
+  services_package3_extra5: "Musik- und Audio-Feinabstimmung",
   services_package3_extra5_price: "€100",
 
   // ===== SERVICE PACKAGE 4 =====
@@ -148,7 +147,8 @@ export const de: Partial<Record<Keys, string>> = {
   services_package4_feature5: "Musiklizenz inklusive",
   services_premium_text: "Individuelles Angebot anfordern",
 
-header_home: "Startseite",
+  // ===== HEADER =====
+  header_home: "Startseite",
   header_about: "Über mich",
   header_portfolio: "Portfolio",
   header_pricing: "Preise",
@@ -157,7 +157,6 @@ header_home: "Startseite",
   // ===== SERVICES ADDONS =====
   services_addons_title: "Zusatzleistungen & Stundensätze",
   services_addons_text: "Verbessere dein Paket mit diesen professionellen Zusatzleistungen oder buche mich stundenweise für spezifische Aufgaben.",
-
   services_addons_column1: "Leistung",
   services_addons_column2: "Preis",
   services_addon1: "Voiceover Aufnahme",
@@ -174,6 +173,8 @@ header_home: "Startseite",
   services_addon6_price: "€150",
   services_addon7: "Reisekosten",
   services_addon7_price: "+€0,35/km",
+
+  // ===== CONTACT SELECT SERVICE =====
   contact_select_service: "Dienst auswählen",
-contact_choose_service: "Wähle einen Dienst aus",
+  contact_choose_service: "Wähle einen Dienst aus",
 };

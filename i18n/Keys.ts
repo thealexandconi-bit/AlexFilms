@@ -25,6 +25,17 @@ export type Keys =
   | "home_contact_button"
   | "home_contact_cta"
 
+  | "home"
+  | "about"
+  | "portfolio"
+  | "services"
+  | "contact"
+  | "header_home"
+  | "header_about"
+  | "header_portfolio"
+  | "header_pricing"
+  | "header_contact"
+
   // ===== ABOUT =====
   | "about_title"
   | "about_intro1"
@@ -78,12 +89,13 @@ export type Keys =
   | "contact_send_button"
   | "contact_select_service"
   | "contact_select_placeholder"
+  | "contact_choose_service"
   | "contact_service_basic"
   | "contact_service_standard"
   | "contact_service_full"
   | "contact_service_highend"
-  
-   // ===== Services =====
+
+  // ===== Services =====
   | "services_hero_title"
   | "services_hero_text"
   | "services_includes"
@@ -172,13 +184,4 @@ export type Keys =
   | "services_addon6"
   | "services_addon6_price"
   | "services_addon7"
-  | "services_addon7_price"
-
-  | "contact_select_service"
-  | "contact_choose_service"
-  | "services_hero_title"
-  | "services_hero_text"
-  | "contact_select_service"
-  | "contact_choose_service"
-  | "contact_select_placeholder";
-  
+  | "services_addon7_price";

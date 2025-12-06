@@ -1,4 +1,3 @@
-// src/i18n/fr.ts
 import { Keys } from "./Keys";
 
 export const fr: Partial<Record<Keys, string>> = {
@@ -6,22 +5,18 @@ export const fr: Partial<Record<Keys, string>> = {
   home_hero_title: "AlexFilms",
   home_hero_subtitle: "Vidéographie Cinématographique & Pilote de Drone Professionnel",
   home_hero_cta: "Voir mon travail",
-
   home_about_title: "Qui est Alex ?",
   home_about_paragraph1: "Je suis un réalisateur allemand de 32 ans, titulaire d’un master en ingénierie, spécialisé dans la vidéographie cinématographique avec drones et caméras au sol. Je capture des environnements inaccessibles grâce à une technologie avancée pour fournir des images de niveau mondial.",
   home_about_paragraph2: "Chaque vol, chaque prise — une histoire plus proche de la perfection.",
   home_about_cta: "En savoir plus sur moi",
   home_about_alt: "Portrait d'Alex",
-
   home_stat_title: "Mon parcours en chiffres",
   home_stat_projects: "Projets tournés",
   home_stat_hours: "Heures de vol",
   home_stat_views: "Vues organiques dans le monde entier",
-
   home_featured_title: "Projets phares",
   home_featured_project: "Projet phare",
   home_featured_cta: "Voir le portfolio complet",
-
   home_contact_title: "Travaillons ensemble",
   home_contact_subtitle: "Intéressé par le FPV cinématographique ou la vidéographie professionnelle pour votre prochain projet ?",
   home_contact_cta: "Contactez-moi",
@@ -76,10 +71,21 @@ export const fr: Partial<Record<Keys, string>> = {
   contact_message: "Message",
   contact_message_placeholder: "Écrivez votre message ici...",
   contact_send_button: "Envoyer le message",
+  contact_select_service: "Sélectionnez un service",
+  contact_choose_service: "Choisissez un service",
+
+  // ===== HEADER =====
+  header_home: "Accueil",
+  header_about: "À propos",
+  header_portfolio: "Portfolio",
+  header_pricing: "Tarifs",
+  header_contact: "Contact",
 
   // ===== SERVICES =====
   services_hero_title: "Production Vidéo Professionnelle",
   services_hero_text: "Histoires visuelles avec précision cinématographique — des clips courts pour les réseaux sociaux aux productions complètes avec FPV.",
+  services_cta: "Choisir ce pack",
+  services_premium_text: "Demander un devis personnalisé",
 
   // ===== SERVICE PACKAGE 1 =====
   services_package1_name: "Pack Réseaux Sociaux",
@@ -97,7 +103,6 @@ export const fr: Partial<Record<Keys, string>> = {
   services_package1_extra3_price: "€50",
   services_package1_extra4: "Sous-titres ou captions",
   services_package1_extra4_price: "€30",
-  services_cta: "Choisir ce pack",
 
   // ===== SERVICE PACKAGE 2 =====
   services_package2_name: "Pack Entreprise",
@@ -138,12 +143,6 @@ export const fr: Partial<Record<Keys, string>> = {
   services_package3_extra5: "Réglage fin de la musique et de l'audio",
   services_package3_extra5_price: "€100",
 
-header_home: "Accueil",
-  header_about: "À propos",
-  header_portfolio: "Portfolio",
-  header_pricing: "Tarifs",
-  header_contact: "Contact",
-
   // ===== SERVICE PACKAGE 4 =====
   services_package4_name: "Production Haut de Gamme",
   services_package4_description: "Production cinématographique premium pour clients commerciaux, offices de tourisme et grandes campagnes.",
@@ -152,7 +151,6 @@ header_home: "Accueil",
   services_package4_feature3: "Design sonore cinématographique",
   services_package4_feature4: "Prises FPV et drone",
   services_package4_feature5: "Musique sous licence incluse",
-  services_premium_text: "Demander un devis personnalisé",
 
   // ===== SERVICES ADDONS =====
   services_addons_title: "Services supplémentaires et tarifs horaires",
@@ -173,6 +171,4 @@ header_home: "Accueil",
   services_addon6_price: "€150",
   services_addon7: "Frais de déplacement",
   services_addon7_price: "+€0,35/km",
-contact_select_service: "Sélectionnez un service",
-contact_choose_service: "Choisissez un service",
 };
