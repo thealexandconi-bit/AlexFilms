@@ -6,7 +6,8 @@ import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
 import Link from "next/link";
 import Header from "../components/Header";
-import { useI18n } from '@/i18n/I18nProvider';
+import { useI18n } from "@/i18n/I18nProvider";
+import { Youtube, Instagram, Music2 } from "lucide-react";
 
 // === Small reusable stat component ===
 function Stat({ end, labelKey, suffix = "+", duration = 3, separator = "," }) {
@@ -39,29 +40,23 @@ export default function Home() {
       {/* ===== HEADER ===== */}
       <Header />
 
-      {/* ===== HERO SECTION ===== */}
+      {/* ===== HERO SECTION (NEW: Cloudflare R2 Background Video) ===== */}
       <section className="relative h-screen w-full overflow-hidden flex items-center justify-center">
-        <div className="absolute inset-0">
-          <iframe
-            className="w-full h-full md:block hidden"
-            src="https://www.youtube.com/embed/USBaG4rg0Is?autoplay=1&mute=1&loop=1&playlist=USBaG4rg0Is&controls=0&showinfo=0&modestbranding=1"
-            title="AlexFilms Intro"
-            frameBorder="0"
-            allow="autoplay; fullscreen"
-            allowFullScreen
-          ></iframe>
-          <video
-            className="w-full h-full object-cover md:hidden"
-            src="https://pub-46816b9fcf1445efbe847da23ac5d27e.r2.dev/vertical5.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-          ></video>
-          <div className="absolute inset-0 bg-black/60"></div>
-        </div>
+        <video
+          src="https://pub-46816b9fcf1445efbe847da23ac5d27e.r2.dev/background.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover opacity-70"
+        />
 
-        <div className="relative z-10 text-center px-6">
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/40 z-10" />
+
+        {/* Text */}
+        <div className="relative z-20 text-center px-6">
           <motion.h1
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -87,14 +82,13 @@ export default function Home() {
           >
             <Link
               href="/portfolio"
-              className="inline-block mt-8 rounded-full px-8 py-3 bg-white text-black font-semibold shadow-lg transition-all duration-300"
+              className="inline-block mt-8 rounded-full px-8 py-3 bg-white text-black font-semibold shadow-lg transition-all duration-300 hover:bg-gray-200"
             >
               {t("home_hero_cta")}
             </Link>
           </motion.div>
         </div>
       </section>
-
 
       {/* ===== WHO IS ALEX ===== */}
       <section
@@ -109,6 +103,7 @@ export default function Home() {
           alt={t("home_about_alt")}
           className="w-56 h-56 md:w-72 md:h-72 rounded-full object-cover shadow-lg"
         />
+
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -118,6 +113,7 @@ export default function Home() {
           <h2 className="text-4xl font-bold mb-6">{t("home_about_title")}</h2>
           <p className="text-gray-300 leading-relaxed mb-4">{t("home_about_paragraph1")}</p>
           <p className="text-gray-400 italic mb-4">{t("home_about_paragraph2")}</p>
+
           <Link
             href="/about"
             className="inline-block mt-2 rounded-full px-6 py-2 bg-white text-black font-semibold hover:bg-gray-200 transition"
@@ -127,11 +123,44 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* ===== SOCIAL MEDIA BUTTONS (WIDER SPACING) ===== */}
+      <section className="py-6 flex justify-center">
+        <div className="w-full max-w-4xl flex justify-between px-10 gap-8">
+          <Link
+            href="https://youtube.com/@alexandconi?si=RixpjGb0m_3bNqUX"
+            target="_blank"
+            className="flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition"
+          >
+            <Youtube className="w-5 h-5" />
+            YouTube
+          </Link>
+
+          <Link
+            href="https://www.instagram.com/alexandconi/"
+            target="_blank"
+            className="flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition"
+          >
+            <Instagram className="w-5 h-5" />
+            Instagram
+          </Link>
+
+          <Link
+            href="https://www.tiktok.com/@alexandconi"
+            target="_blank"
+            className="flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition"
+          >
+            <Music2 className="w-5 h-5" />
+            TikTok
+          </Link>
+        </div>
+      </section>
+
       <hr className="border-white/80 mx-auto w-1/3 my-8 opacity-80" />
 
       {/* ===== STATS SECTION ===== */}
       <section className="py-24 bg-black/80 text-center">
         <h2 className="text-3xl font-bold mb-12">{t("home_stat_title")}</h2>
+
         <div className="flex flex-col md:flex-row justify-center gap-10 md:gap-24 px-6 md:px-24">
           <Stat end={50} labelKey="home_stat_projects" />
           <Stat end={300} labelKey="home_stat_hours" />
@@ -142,11 +171,9 @@ export default function Home() {
       <hr className="border-white/80 mx-auto w-1/3 my-8 opacity-80" />
 
       {/* ===== FEATURED PROJECTS ===== */}
-      <section
-        id="portfolio"
-        className="min-h-[80vh] bg-black flex flex-col items-center py-20 px-8"
-      >
+      <section id="portfolio" className="min-h-[80vh] bg-black flex flex-col items-center py-20 px-8">
         <h2 className="text-4xl font-bold mb-12">{t("home_featured_title")}</h2>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl w-full">
           {featuredProjects.map((id, idx) => (
             <div key={idx} className="aspect-video w-full rounded-xl overflow-hidden shadow-lg">
@@ -172,12 +199,10 @@ export default function Home() {
       <hr className="border-white/80 mx-auto w-1/3 my-8 opacity-80" />
 
       {/* ===== CONTACT CTA ===== */}
-      <section
-        id="contact"
-        className="py-24 bg-black/90 text-center border-t border-gray-800"
-      >
+      <section id="contact" className="py-24 bg-black/90 text-center border-t border-gray-800">
         <h2 className="text-4xl font-bold mb-6">{t("home_contact_title")}</h2>
         <p className="text-gray-400 mb-8">{t("home_contact_subtitle")}</p>
+
         <Link
           href="/contact"
           className="inline-block bg-white text-black px-8 py-3 rounded-full font-semibold hover:bg-gray-200 transition"

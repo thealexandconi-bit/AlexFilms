@@ -179,4 +179,16 @@ export const en: Record<Keys, string> = {
   contact_select_service: "Select Service",
   contact_select_placeholder: "Select a service",
 contact_choose_service: "Choose a service",
+
+// Top-level section keys required by Record<Keys, string>
+home: "Home",
+about: "About",
+services: "Services",
+contact: "Contact",
+
+header_home: "Home",
+header_about: "About",
+header_portfolio: "Portfolio",
+header_pricing: "Pricing",
+header_contact: "Contact"
 };

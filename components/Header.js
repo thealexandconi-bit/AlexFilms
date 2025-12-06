@@ -19,12 +19,12 @@ export default function Header() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Define all main nav links
+  // Define all main nav links with translations
   const navLinks = [
-    { href: "/about", label: t("about") },
-    { href: "/portfolio", label: t("portfolio") },
-    { href: "/services", label: "Pricing" },
-    { href: "/contact", label: t("contact") },
+    { href: "/about", label: t("header_about") },
+    { href: "/portfolio", label: t("header_portfolio") },
+    { href: "/services", label: t("header_pricing") }, // previously hardcoded
+    { href: "/contact", label: t("header_contact") },
   ];
 
   // Filter out the current page from the nav
@@ -32,7 +32,7 @@ export default function Header() {
 
   // Always add "Home" if current page is not Home
   if (pathname !== "/") {
-    filteredLinks.unshift({ href: "/", label: t("home") || "Home" });
+    filteredLinks.unshift({ href: "/", label: t("header_home") });
   }
 
   return (

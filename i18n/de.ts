@@ -148,6 +148,12 @@ export const de: Partial<Record<Keys, string>> = {
   services_package4_feature5: "Musiklizenz inklusive",
   services_premium_text: "Individuelles Angebot anfordern",
 
+header_home: "Startseite",
+  header_about: "Über mich",
+  header_portfolio: "Portfolio",
+  header_pricing: "Preise",
+  header_contact: "Kontakt",
+
   // ===== SERVICES ADDONS =====
   services_addons_title: "Zusatzleistungen & Stundensätze",
   services_addons_text: "Verbessere dein Paket mit diesen professionellen Zusatzleistungen oder buche mich stundenweise für spezifische Aufgaben.",

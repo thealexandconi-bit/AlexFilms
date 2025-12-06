@@ -171,4 +171,9 @@ export const es: Partial<Record<Keys, string>> = {
   services_addon7_price: "+€0.35/km",
   contact_select_service: "Selecciona un Servicio",
   contact_choose_service: "Elige un servicio",
+  header_home: "Inicio",
+header_about: "Acerca de",
+header_portfolio: "Portafolio",
+header_pricing: "Precios",
+header_contact: "Contacto",
 };

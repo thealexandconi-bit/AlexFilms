@@ -138,6 +138,12 @@ export const fr: Partial<Record<Keys, string>> = {
   services_package3_extra5: "Réglage fin de la musique et de l'audio",
   services_package3_extra5_price: "€100",
 
+header_home: "Accueil",
+  header_about: "À propos",
+  header_portfolio: "Portfolio",
+  header_pricing: "Tarifs",
+  header_contact: "Contact",
+
   // ===== SERVICE PACKAGE 4 =====
   services_package4_name: "Production Haut de Gamme",
   services_package4_description: "Production cinématographique premium pour clients commerciaux, offices de tourisme et grandes campagnes.",
