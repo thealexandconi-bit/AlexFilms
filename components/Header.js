@@ -23,7 +23,7 @@ export default function Header() {
   const navLinks = [
     { href: "/about", label: t("header_about") },
     { href: "/portfolio", label: t("header_portfolio") },
-    { href: "/services", label: t("header_pricing") }, // previously hardcoded
+   // { href: "/services", label: t("header_pricing") }, // previously hardcoded
     { href: "/contact", label: t("header_contact") },
   ];
 
