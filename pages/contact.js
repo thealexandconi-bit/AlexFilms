@@ -40,7 +40,7 @@ export default function Contact() {
             el.getBoundingClientRect().top + window.pageYOffset + yOffset;
           window.scrollTo({ top: y, behavior: "smooth" });
         }
-      }, 100); // small delay to ensure DOM rendered
+      }, 100);
     }
   }, [router.query.package, router.asPath]);
 
@@ -118,33 +118,43 @@ export default function Contact() {
 
           {/* SERVICE SELECT */}
           <div className="flex flex-col space-y-2 md:col-span-2">
-  <label
-    htmlFor="service"
-    className="text-sm uppercase tracking-wider text-gray-300"
-  >
-    {t("contact_select_service") || "Select Service"}
-  </label>
-  <select
-    id="service"
-    name="service"
-    onChange={handleServiceChange}
-    className="bg-transparent border border-gray-600 rounded-xl px-4 py-3 text-sm focus:border-white focus:outline-none transition"
-  >
-    <option value="">-- {t("contact_choose_service") || "Choose a service"} --</option>
-    <option value={t("services_package1_name")}>
-      {t("services_package1_name")} — {t("services_package1_price")}
-    </option>
-    <option value={t("services_package2_name")}>
-      {t("services_package2_name")} — {t("services_package2_price")}
-    </option>
-    <option value={t("services_package3_name")}>
-      {t("services_package3_name")} — {t("services_package3_price")}
-    </option>
-    <option value={t("services_package4_name")}>
-      {t("services_package4_name")} — {t("services_premium_text")}
-    </option>
-  </select>
-</div>
+            <label
+              htmlFor="service"
+              className="text-sm uppercase tracking-wider text-gray-300"
+            >
+              {t("contact_select_service") || "Select Service"}
+            </label>
+            <select
+              id="service"
+              name="service"
+              onChange={handleServiceChange}
+              className="bg-transparent border border-gray-600 rounded-xl px-4 py-3 text-sm focus:border-white focus:outline-none transition"
+            >
+              <option value="">
+                -- {t("contact_choose_service") || "Choose a service"} --
+              </option>
+
+              <option value={t("services_package1_name")}>
+                {t("services_package1_name")}
+                {/* — {t("services_package1_price")} */}
+              </option>
+
+              <option value={t("services_package2_name")}>
+                {t("services_package2_name")}
+                {/* — {t("services_package2_price")} */}
+              </option>
+
+              <option value={t("services_package3_name")}>
+                {t("services_package3_name")}
+                {/* — {t("services_package3_price")} */}
+              </option>
+
+              <option value={t("services_package4_name")}>
+                {t("services_package4_name")}
+                {/* — {t("services_premium_text")} */}
+              </option>
+            </select>
+          </div>
 
           {/* SUBJECT */}
           <div className="flex flex-col space-y-2 md:col-span-2">
