@@ -1,10 +1,9 @@
 import React from "react";
-import Header from "../components/Header";
 
 export default function LegalNotice() {
   return (
     <main className="bg-black text-gray-200 min-h-screen">
-      <Header />
+      
 
       <section className="max-w-3xl mx-auto px-6 py-24 leading-relaxed">
         <h1 className="text-4xl font-bold mb-8 text-white">Legal Notice</h1>

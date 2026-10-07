@@ -1,210 +1,184 @@
-"use client";
-
-import React, { useState, useEffect } from "react";
-import Image from "next/image";
-import Header from "../components/Header";
-import { useI18n } from "@/i18n/I18nProvider";
-import { useRouter } from "next/router";
+import React, { useState } from "react";
 
 export default function Contact() {
-  const { t } = useI18n();
-  const router = useRouter();
-  const [subject, setSubject] = useState("");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+    service: "",
+  });
 
-  // Handle changing the service select and subject field
-  const handleServiceChange = (e) => {
-    const service = e.target.value;
-    if (!service) {
-      setSubject("");
-      return;
-    }
-    setSubject(`${service} Project: `);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
-  useEffect(() => {
-    // Autofill if package is in query string
-    if (router.query.package) {
-      const pkg = router.query.package;
-      setSubject(`${pkg} Project: `);
-      const select = document.getElementById("service");
-      if (select) select.value = pkg;
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-    // Smooth scroll to form if URL contains #contact-form
-    if (router.asPath.includes("#contact-form")) {
-      setTimeout(() => {
-        const el = document.getElementById("contact-form");
-        if (el) {
-          const yOffset = -80; // adjust for fixed header
-          const y =
-            el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-          window.scrollTo({ top: y, behavior: "smooth" });
-        }
-      }, 100);
-    }
-  }, [router.query.package, router.asPath]);
+    const subject = encodeURIComponent(
+      formData.subject || "AlexFilms Project Enquiry"
+    );
+
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\n` +
+        `Email: ${formData.email}\n` +
+        `Service: ${formData.service}\n\n` +
+        `${formData.message}`
+    );
+
+    window.location.href = `mailto:hello@alexfilms.com?subject=${subject}&body=${body}`;
+  };
 
   return (
-    <main className="relative bg-black text-white overflow-hidden min-h-screen">
-      {/* ===== HEADER ===== */}
-      <Header />
-
-      {/* ===== HERO SECTION ===== */}
-      <section className="relative flex items-center justify-center min-h-[70vh] px-6 text-center overflow-hidden">
-        <Image
-          src="/images/contact.jpg"
-          alt={t("contact_hero_title")}
-          fill
-          className="object-cover object-center opacity-80 absolute inset-0"
-        />
-        <div className="absolute inset-0 bg-black/30" />
-        <div className="relative z-10 max-w-2xl mt-24">
-          <h1 className="text-5xl md:text-7xl font-bold uppercase tracking-wider mb-6">
-            {t("contact_hero_title")}
+    <div className="bg-black text-white min-h-screen">
+      <div className="max-w-5xl mx-auto px-6 py-24">
+        {/* Hero */}
+        <div className="text-center mb-16">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 mt-12 uppercase tracking-wider">
+            Let’s Work Together
           </h1>
-          <p className="text-gray-300 text-sm md:text-base leading-relaxed">
-            {t("contact_hero_text")}
+
+          <div className="w-40 h-0.5 bg-white mx-auto mb-8"></div>
+
+          <p className="max-w-2xl mx-auto text-lg md:text-xl text-gray-300 leading-relaxed">
+            Interested in cinematic FPV or professional videography for your
+            next project? Get in touch and let's discuss your ideas.
           </p>
         </div>
-      </section>
 
-      <div className="w-full h-px bg-gray-700 my-12" />
-
-      {/* ===== CONTACT FORM ===== */}
-      <section
-        id="contact-form"
-        className="relative px-6 md:px-20 py-10 max-w-4xl mx-auto"
-      >
+        {/* Contact form */}
         <form
-          action="https://formspree.io/f/xovkbdeb"
-          method="POST"
-          className="grid grid-cols-1 md:grid-cols-2 gap-8"
+          onSubmit={handleSubmit}
+          className="max-w-3xl mx-auto space-y-8"
         >
-          {/* NAME */}
-          <div className="flex flex-col space-y-2">
+          {/* Name */}
+          <div>
             <label
               htmlFor="name"
-              className="text-sm uppercase tracking-wider text-gray-300"
+              className="block text-sm uppercase tracking-widest text-gray-300 mb-3"
             >
-              {t("contact_name")}
+              Name
             </label>
+
             <input
-              type="text"
-              name="name"
               id="name"
+              name="name"
+              type="text"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Enter your name"
               required
-              placeholder={t("contact_name_placeholder")}
-              className="bg-transparent border border-gray-600 rounded-xl px-4 py-3 text-sm focus:border-white focus:outline-none transition"
+              className="w-full bg-transparent border border-gray-700 px-4 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-white transition"
             />
           </div>
 
-          {/* EMAIL */}
-          <div className="flex flex-col space-y-2">
+          {/* Email */}
+          <div>
             <label
               htmlFor="email"
-              className="text-sm uppercase tracking-wider text-gray-300"
+              className="block text-sm uppercase tracking-widest text-gray-300 mb-3"
             >
-              {t("contact_email")}
+              Email
             </label>
+
             <input
-              type="email"
-              name="_replyto"
               id="email"
+              name="email"
+              type="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Enter your email"
               required
-              placeholder={t("contact_email_placeholder")}
-              className="bg-transparent border border-gray-600 rounded-xl px-4 py-3 text-sm focus:border-white focus:outline-none transition"
+              className="w-full bg-transparent border border-gray-700 px-4 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-white transition"
             />
           </div>
 
-          {/* SERVICE SELECT */}
-          <div className="flex flex-col space-y-2 md:col-span-2">
+          {/* Subject */}
+          <div>
+            <label
+              htmlFor="subject"
+              className="block text-sm uppercase tracking-widest text-gray-300 mb-3"
+            >
+              Subject
+            </label>
+
+            <input
+              id="subject"
+              name="subject"
+              type="text"
+              value={formData.subject}
+              onChange={handleChange}
+              placeholder="Enter a subject"
+              required
+              className="w-full bg-transparent border border-gray-700 px-4 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-white transition"
+            />
+          </div>
+
+          {/* Service */}
+          <div>
             <label
               htmlFor="service"
-              className="text-sm uppercase tracking-wider text-gray-300"
+              className="block text-sm uppercase tracking-widest text-gray-300 mb-3"
             >
-              {t("contact_select_service") || "Select Service"}
+              Service
             </label>
+
             <select
               id="service"
               name="service"
-              onChange={handleServiceChange}
-              className="bg-transparent border border-gray-600 rounded-xl px-4 py-3 text-sm focus:border-white focus:outline-none transition"
+              value={formData.service}
+              onChange={handleChange}
+              required
+              className="w-full bg-black border border-gray-700 px-4 py-4 text-white focus:outline-none focus:border-white transition"
             >
-              <option value="">
-                -- {t("contact_choose_service") || "Choose a service"} --
+              <option value="" disabled>
+                Select a service
               </option>
-
-              <option value={t("services_package1_name")}>
-                {t("services_package1_name")}
-                {/* — {t("services_package1_price")} */}
-              </option>
-
-              <option value={t("services_package2_name")}>
-                {t("services_package2_name")}
-                {/* — {t("services_package2_price")} */}
-              </option>
-
-              <option value={t("services_package3_name")}>
-                {t("services_package3_name")}
-                {/* — {t("services_package3_price")} */}
-              </option>
-
-              <option value={t("services_package4_name")}>
-                {t("services_package4_name")}
-                {/* — {t("services_premium_text")} */}
-              </option>
+              <option value="Basic Experience">Basic Experience</option>
+              <option value="Standard Package">Standard Package</option>
+              <option value="Full Experience">Full Experience</option>
+              <option value="High-End Production">High-End Production</option>
             </select>
           </div>
 
-          {/* SUBJECT */}
-          <div className="flex flex-col space-y-2 md:col-span-2">
-            <label
-              htmlFor="subject"
-              className="text-sm uppercase tracking-wider text-gray-300"
-            >
-              {t("contact_subject")}
-            </label>
-            <input
-              type="text"
-              name="subject"
-              id="subject"
-              required
-              placeholder={t("contact_subject_placeholder")}
-              value={subject}
-              onChange={(e) => setSubject(e.target.value)}
-              className="bg-transparent border border-gray-600 rounded-xl px-4 py-3 text-sm focus:border-white focus:outline-none transition"
-            />
-          </div>
-
-          {/* MESSAGE */}
-          <div className="flex flex-col space-y-2 md:col-span-2">
+          {/* Message */}
+          <div>
             <label
               htmlFor="message"
-              className="text-sm uppercase tracking-wider text-gray-300"
+              className="block text-sm uppercase tracking-widest text-gray-300 mb-3"
             >
-              {t("contact_message")}
+              Message
             </label>
+
             <textarea
-              name="message"
               id="message"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              placeholder="Write your message here..."
+              rows={8}
               required
-              rows={6}
-              placeholder={t("contact_message_placeholder")}
-              className="bg-transparent border border-gray-600 rounded-xl px-4 py-3 text-sm focus:border-white focus:outline-none transition"
+              className="w-full bg-transparent border border-gray-700 px-4 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-white transition resize-y"
             />
           </div>
 
-          {/* BUTTON */}
-          <div className="md:col-span-2 flex justify-center mt-4">
+          {/* Submit */}
+          <div className="text-center pt-4">
             <button
               type="submit"
-              className="bg-white text-black uppercase text-sm tracking-widest font-semibold px-10 py-3 rounded-xl hover:bg-gray-200 transition-all"
+              className="bg-white text-black px-10 py-4 uppercase tracking-widest text-sm font-semibold hover:bg-gray-200 transition"
             >
-              {t("contact_send_button")}
+              Send Message
             </button>
           </div>
         </form>
-      </section>
-    </main>
+      </div>
+    </div>
   );
 }

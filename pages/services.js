@@ -1,173 +1,232 @@
-"use client";
-
+import React from "react";
 import Link from "next/link";
-import { useI18n } from "@/i18n/I18nProvider";
 
-export default function ServicesPage() {
-  const { t } = useI18n();
-
+export default function Services() {
   const packages = [
     {
-      name: t("services_package1_name"),
-      price: t("services_package1_price"),
-      description: t("services_package1_description"),
+      name: "Social Media Package",
+      price: "€150",
+      description:
+        "Ideal for short, engaging videos optimized for social platforms.",
       features: [
-        t("services_package1_feature1"),
-        t("services_package1_feature2"),
-        t("services_package1_feature3"),
-        t("services_package1_feature4"),
+        "Up to 2 hours of shooting",
+        "1 edited video (up to 60 seconds)",
+        "Color correction & basic grading",
+        "Music license included",
       ],
       extras: [
-        { name: t("services_package1_extra1"), price: t("services_package1_extra1_price") },
-        { name: t("services_package1_extra2"), price: t("services_package1_extra2_price") },
-        { name: t("services_package1_extra3"), price: t("services_package1_extra3_price") },
-        { name: t("services_package1_extra4"), price: t("services_package1_extra4_price") },
+        ["Additional revision", "€40"],
+        ["Extra shooting hour", "€60"],
+        ["Custom graphics", "€50"],
+        ["Captions/Subtitles", "€30"],
       ],
     },
     {
-      name: t("services_package2_name"),
-      price: t("services_package2_price"),
-      description: t("services_package2_description"),
+      name: "Business Package",
+      price: "€350",
+      description:
+        "Perfect for small businesses or local brands wanting cinematic storytelling.",
       features: [
-        t("services_package2_feature1"),
-        t("services_package2_feature2"),
-        t("services_package2_feature3"),
-        t("services_package2_feature4"),
-        t("services_package2_feature5"),
+        "Half-day shooting",
+        "2 edited videos (up to 90 seconds)",
+        "Professional color grading",
+        "Basic FPV or drone shots",
+        "Licensed music included",
       ],
       extras: [
-        { name: t("services_package2_extra1"), price: t("services_package2_extra1_price") },
-        { name: t("services_package2_extra2"), price: t("services_package2_extra2_price") },
-        { name: t("services_package2_extra3"), price: t("services_package2_extra3_price") },
-        { name: t("services_package2_extra4"), price: t("services_package2_extra4_price") },
-        { name: t("services_package2_extra5"), price: t("services_package2_extra5_price") },
+        ["Second camera operator", "€100"],
+        ["Voice-over", "€60"],
+        ["FPV sequence", "€120"],
+        ["Custom thumbnail", "€25"],
+        ["Script writing", "€70"],
       ],
     },
     {
-      name: t("services_package3_name"),
-      price: t("services_package3_price"),
-      description: t("services_package3_description"),
+      name: "Full Experience",
+      price: "€500",
+      description:
+        "For brands and destinations looking for a cinematic experience with full production value.",
       features: [
-        t("services_package3_feature1"),
-        t("services_package3_feature2"),
-        t("services_package3_feature3"),
-        t("services_package3_feature4"),
+        "Full-day shooting",
+        "FPV + Drone + Ground coverage",
+        "Professional sound design",
+        "Custom story planning",
       ],
       extras: [
-        { name: t("services_package3_extra1"), price: t("services_package3_extra1_price") },
-        { name: t("services_package3_extra2"), price: t("services_package3_extra2_price") },
-        { name: t("services_package3_extra3"), price: t("services_package3_extra3_price") },
-        { name: t("services_package3_extra4"), price: t("services_package3_extra4_price") },
-        { name: t("services_package3_extra5"), price: t("services_package3_extra5_price") },
+        ["Color master grade", "€100"],
+        ["Extra editing version", "€80"],
+        ["Multi-location setup", "€120"],
+        ["Reel version (portrait)", "€40"],
+        ["Music and Audio fine-tuning", "€100"],
       ],
+    },
+    {
+      name: "High-End Production",
+      price: "Custom",
+      description:
+        "Premium cinematic video production for commercial clients, tourism boards, and major campaigns.",
+      features: [
+        "Up to 2 filming days",
+        "Professional color grading",
+        "Cinematic sound design",
+        "FPV & Drone footage",
+        "Licensed music included",
+      ],
+      extras: [],
     },
   ];
 
+  const addons = [
+    ["Voice-over recording", "€60"],
+    ["Professional color grading", "€80–€100"],
+    ["Extra filming hour", "€60/hr"],
+    ["Editing revisions", "€50/hr"],
+    ["FPV add-on", "from €80"],
+    ["Drone footage (Mavic 3 Pro)", "€150"],
+    ["Travel cost", "+€0.35/km"],
+  ];
+
   return (
-    <div className="relative bg-black text-white min-h-screen px-6 py-20">
-      <div className="max-w-6xl mx-auto text-center mb-16">
-        <h1 className="text-5xl font-heading mb-4">{t("services_hero_title")}</h1>
-        <p className="text-lg text-gray-300 max-w-2xl mx-auto">{t("services_hero_text")}</p>
-      </div>
+    <div className="bg-black text-white min-h-screen">
+      <div className="max-w-6xl mx-auto px-6 py-24">
+        {/* Hero */}
+        <div className="text-center mb-20">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 mt-12 uppercase tracking-wider">
+            Professional Video Production Services
+          </h1>
 
-      <div className="grid md:grid-cols-3 gap-10">
-        {packages.map((pkg, i) => (
-          <div
-            key={i}
-            className="border border-gray-700 rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all"
-          >
-            <h2 className="text-3xl font-heading mb-2 text-white">{pkg.name}</h2>
-            <p className="text-xl text-amber-500 font-semibold mb-4">{pkg.price}</p>
-            <p className="text-gray-300 mb-6">{pkg.description}</p>
+          <div className="w-40 h-0.5 bg-white mx-auto mb-8"></div>
 
-            <h3 className="font-semibold mb-2 text-white">{t("services_includes")}:</h3>
-            <ul className="list-disc list-inside text-gray-300 mb-4">
-              {pkg.features.map((f, j) => (
-                <li key={j}>{f}</li>
-              ))}
-            </ul>
+          <p className="max-w-3xl mx-auto text-lg md:text-xl text-gray-300 leading-relaxed">
+            Story-driven visuals crafted with cinematic precision — from short
+            social clips to full-scale FPV productions.
+          </p>
+        </div>
 
-            <h3 className="font-semibold mb-2 text-white">{t("services_extras")}:</h3>
-            <ul className="text-gray-300 mb-6">
-              {pkg.extras.map((e, j) => (
-                <li key={j}>
-                  {e.name} <span className="text-gray-500">{e.price}</span>
-                </li>
-              ))}
-            </ul>
-
-            <Link
-              href={`/contact?package=${encodeURIComponent(pkg.name)}#contact-form`}
-              className="inline-block bg-gray-900 text-white px-6 py-2 rounded-full hover:bg-gray-800 transition"
+        {/* Packages */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
+          {packages.map((pkg) => (
+            <div
+              key={pkg.name}
+              className="border border-gray-700 rounded-lg p-8 flex flex-col"
             >
-              {t("services_cta")}
-            </Link>
+              <div className="mb-8">
+                <h2 className="text-2xl md:text-3xl font-bold uppercase tracking-wide mb-3">
+                  {pkg.name}
+                </h2>
+
+                <div className="text-3xl font-bold text-blue-400 mb-4">
+                  {pkg.price}
+                </div>
+
+                <p className="text-gray-300 leading-relaxed">
+                  {pkg.description}
+                </p>
+              </div>
+
+              <div className="mb-8">
+                <h3 className="text-sm uppercase tracking-widest text-gray-400 mb-4">
+                  Includes
+                </h3>
+
+                <ul className="space-y-3">
+                  {pkg.features.map((feature) => (
+                    <li
+                      key={feature}
+                      className="flex items-start text-gray-200"
+                    >
+                      <span className="text-blue-400 mr-3">✓</span>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {pkg.extras.length > 0 && (
+                <div className="border-t border-gray-800 pt-6 mb-8">
+                  <h3 className="text-sm uppercase tracking-widest text-gray-400 mb-4">
+                    Extras
+                  </h3>
+
+                  <div className="space-y-3">
+                    {pkg.extras.map(([name, price]) => (
+                      <div
+                        key={name}
+                        className="flex justify-between gap-4 text-sm"
+                      >
+                        <span className="text-gray-300">{name}</span>
+                        <span className="text-gray-400 whitespace-nowrap">
+                          {price}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div className="mt-auto">
+                <Link
+                  href="/contact"
+                  className="inline-block w-full text-center border border-white px-6 py-3 uppercase tracking-wider text-sm hover:bg-white hover:text-black transition"
+                >
+                  Get this package
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Add-ons */}
+        <div className="mb-24">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold uppercase tracking-wider mb-6">
+              Add-ons
+            </h2>
+
+            <div className="w-32 h-0.5 bg-white mx-auto mb-6"></div>
+
+            <p className="text-gray-300 text-lg">
+              Enhance your video production
+            </p>
           </div>
-        ))}
-      </div>
 
-      {/* Premium Section */}
-      <div className="max-w-4xl mx-auto text-center mt-24 bg-gray-900 rounded-2xl p-10 shadow-md">
-        <h2 className="text-3xl font-heading mb-2 text-white">{t("services_package4_name")}</h2>
-        <p className="text-gray-300 text-lg mb-6">{t("services_package4_description")}</p>
-        <ul className="text-gray-300 mb-6">
-          <li>{t("services_package4_feature1")}</li>
-          <li>{t("services_package4_feature2")}</li>
-          <li>{t("services_package4_feature3")}</li>
-          <li>{t("services_package4_feature4")}</li>
-          <li>{t("services_package4_feature5")}</li>
-        </ul>
-        <Link
-          href="/contact?package=High-End Custom#contact-form"
-          className="inline-block bg-amber-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-amber-500 transition"
-        >
-          {t("services_premium_text")}
-        </Link>
-      </div>
+          <div className="max-w-4xl mx-auto border border-gray-700 rounded-lg overflow-hidden">
+            <div className="grid grid-cols-2 bg-gray-900 px-6 py-4 text-sm uppercase tracking-widest">
+              <span>Service</span>
+              <span className="text-right">Price</span>
+            </div>
 
-      {/* Add-ons Section */}
-      <div className="max-w-4xl mx-auto text-center mt-24">
-        <h2 className="text-3xl font-heading mb-4 text-white">{t("services_addons_title")}</h2>
-        <p className="text-gray-300 mb-6">{t("services_addons_text")}</p>
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border border-gray-700 rounded-xl">
-            <thead>
-              <tr className="bg-gray-900 text-white">
-                <th className="py-3 px-6">{t("services_addons_column1")}</th>
-                <th className="py-3 px-6">{t("services_addons_column2")}</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-t border-gray-700">
-                <td className="py-3 px-6">{t("services_addon1")}</td>
-                <td className="py-3 px-6">{t("services_addon1_price")}</td>
-              </tr>
-              <tr className="border-t border-gray-700">
-                <td className="py-3 px-6">{t("services_addon2")}</td>
-                <td className="py-3 px-6">{t("services_addon2_price")}</td>
-              </tr>
-              <tr className="border-t border-gray-700">
-                <td className="py-3 px-6">{t("services_addon3")}</td>
-                <td className="py-3 px-6">{t("services_addon3_price")}</td>
-              </tr>
-              <tr className="border-t border-gray-700">
-                <td className="py-3 px-6">{t("services_addon4")}</td>
-                <td className="py-3 px-6">{t("services_addon4_price")}</td>
-              </tr>
-              <tr className="border-t border-gray-700">
-                <td className="py-3 px-6">{t("services_addon5")}</td>
-                <td className="py-3 px-6">{t("services_addon5_price")}</td>
-              </tr>
-              <tr className="border-t border-gray-700">
-                <td className="py-3 px-6">{t("services_addon6")}</td>
-                <td className="py-3 px-6">{t("services_addon6_price")}</td>
-              </tr>
-              <tr className="border-t border-gray-700">
-                <td className="py-3 px-6">{t("services_addon7")}</td>
-                <td className="py-3 px-6">{t("services_addon7_price")}</td>
-              </tr>
-            </tbody>
-          </table>
+            {addons.map(([name, price]) => (
+              <div
+                key={name}
+                className="grid grid-cols-2 px-6 py-5 border-t border-gray-800"
+              >
+                <span className="text-gray-200">{name}</span>
+                <span className="text-gray-400 text-right">{price}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Custom offer */}
+        <div className="text-center border-t border-gray-800 pt-20">
+          <h2 className="text-3xl md:text-4xl font-bold uppercase tracking-wider mb-6">
+            Request Custom Offer
+          </h2>
+
+          <p className="max-w-2xl mx-auto text-gray-300 leading-relaxed mb-8">
+            Every production is different. If your project requires a custom
+            combination of FPV, aerial, ground cinematography, editing, or
+            multiple filming locations, get in touch and I’ll create an offer
+            around your requirements.
+          </p>
+
+          <Link
+            href="/contact"
+            className="inline-block bg-white text-black px-8 py-4 uppercase tracking-widest text-sm font-semibold hover:bg-gray-200 transition"
+          >
+            Contact Me
+          </Link>
         </div>
       </div>
     </div>
