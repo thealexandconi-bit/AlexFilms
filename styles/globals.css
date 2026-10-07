@@ -1,40 +1,36 @@
-/* Tailwind Directives */
 @import "tailwindcss/preflight";
 @import "tailwindcss/utilities";
 
-/* Your custom styles below */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #000000;
+  --foreground: #ededed;
 
-  --font-heading: 'Bebas Neue', sans-serif;
-  --font-body: 'Montserrat', sans-serif;
-  --font-hero: 'Abril Fatface', serif;
+  --font-heading: "Bebas Neue", sans-serif;
+  --font-body: "Montserrat", sans-serif;
+  --font-hero: "Abril Fatface", serif;
 }
 
-/* Dark mode colors */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-/* Body text */
+html,
 body {
-  font-family: var(--font-body);
-  background: var(--background);
-  color: var(--foreground);
   margin: 0;
   padding: 0;
+  background: #000000;
+  color: #ededed;
 }
 
-/* Headings */
-h1, h2, h3, h4, h5, h6 {
+body {
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
 }
 
-/* Hero or special quotes */
 .hero-text {
   font-family: var(--font-hero);
 }

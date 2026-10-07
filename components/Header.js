@@ -7,7 +7,7 @@ export default function Header() {
   const navLinks = [
     { href: "/about", label: "About" },
     { href: "/portfolio", label: "Portfolio" },
-    { href: "/luxury-villa-fpv-marbella", label: "FPV" },
+    { href: "/luxury-villa-fpv-marbella", label: "Villa Tours" },
     { href: "/wedding-videographer-malaga", label: "Weddings" },
     { href: "/contact", label: "Contact" },
   ];
