@@ -80,7 +80,10 @@ export default function LuxuryVillaFPVMarbella() {
             playsInline
             className="absolute inset-0 w-full h-full object-cover"
           >
-            <source src="/videos/villa-fpv-hero.mp4" type="video/mp4" />
+            <source
+  src="https://pub-46816b9fcf1445efbe847da23ac5d27e.r2.dev/herobackgroundfpv.mp4"
+  type="video/mp4"
+/>
           </video>
 
           <div className="absolute inset-0 bg-black/55" />
