@@ -1,6 +1,21 @@
+
 import React, { useEffect, useRef } from "react";
 
 const projects = [
+  {
+    title: "Luxury Villa Tours",
+    video:
+      "https://pub-46816b9fcf1445efbe847da23ac5d27e.r2.dev/fpvindoorshort.mp4",
+    description:
+      "Immersive indoor FPV fly-throughs and cinematic villa tours that showcase the architecture, design, and atmosphere of luxury properties. A distinctive way to present villas across Marbella and the Costa del Sol.",
+  },
+  {
+    title: "Wedding Films",
+    video:
+      "https://pub-fafa1cfd10a84168b854e9b1497b897c.r2.dev/weddingvertical.mp4",
+    description:
+      "Cinematic wedding films capturing genuine emotions, meaningful moments, and the atmosphere of your day through natural storytelling, beautiful imagery, and thoughtful editing.",
+  },
   {
     title: "FPV Drone Cinematics",
     video:
@@ -72,7 +87,7 @@ function AutoplayVideo({ src }) {
       playsInline
       loop
       preload="metadata"
-      className="w-full max-w-[300px] aspect-9/16 object-cover rounded-lg shadow-2xl"
+      className="w-full max-w-[300px] aspect-[9/16] object-cover rounded-lg shadow-2xl"
     />
   );
 }
@@ -82,7 +97,7 @@ export default function Portfolio() {
     <main className="bg-black text-white">
       {/* Portfolio Hero */}
       <section className="relative min-h-screen overflow-hidden pt-20 flex items-center justify-center">
-        {/* Seamless video background */}
+        {/* Four-video background */}
         <div className="absolute inset-0 grid grid-cols-2 grid-rows-2 gap-0">
           {[
             "https://pub-46816b9fcf1445efbe847da23ac5d27e.r2.dev/video1.mp4",
@@ -97,6 +112,7 @@ export default function Portfolio() {
               muted
               loop
               playsInline
+              preload="metadata"
               className="w-full h-full object-cover"
             />
           ))}
@@ -107,15 +123,19 @@ export default function Portfolio() {
 
         {/* Hero content */}
         <div className="relative z-10 max-w-4xl px-6 text-center">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">Portfolio</h1>
+          <h1 className="text-5xl md:text-7xl font-bold mb-6">
+            Portfolio
+          </h1>
 
           <p className="text-lg md:text-xl text-gray-200 leading-relaxed">
-            FPV fly-throughs · Cinematic drone shots · Stabilized gimbal footage · Professional editing and color grading · Story-driven videos for brands, events, restaurants, hotels and more.
+            FPV fly-throughs · Cinematic drone shots · Stabilized gimbal
+            footage · Professional editing and color grading · Story-driven
+            videos for brands, events, restaurants, hotels and more.
           </p>
         </div>
       </section>
 
-      {/* Vertical Projects */}
+      {/* Portfolio Projects */}
       <section className="px-6 md:px-12 lg:px-20 py-24 md:py-32">
         <div className="max-w-6xl mx-auto space-y-28 md:space-y-36">
           {projects.map((project, index) => {
@@ -133,7 +153,7 @@ export default function Portfolio() {
                   <AutoplayVideo src={project.video} />
                 </div>
 
-                {/* Text */}
+                {/* Project description */}
                 <div className="max-w-xl">
                   <h2 className="text-3xl md:text-4xl font-bold mb-5">
                     {project.title}

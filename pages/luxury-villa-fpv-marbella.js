@@ -2,7 +2,9 @@ import Head from "next/head";
 import Link from "next/link";
 import React, { useEffect, useRef } from "react";
 
-function AutoplayVideo({ src, className = "" }) {
+const R2 = "https://pub-46816b9fcf1445efbe847da23ac5d27e.r2.dev";
+
+function AutoplayVideo({ src, className = "", poster }) {
   const videoRef = useRef(null);
 
   useEffect(() => {
@@ -17,7 +19,7 @@ function AutoplayVideo({ src, className = "" }) {
           video.pause();
         }
       },
-      { threshold: 0.35 }
+      { threshold: 0.15 }
     );
 
     observer.observe(video);
@@ -29,12 +31,45 @@ function AutoplayVideo({ src, className = "" }) {
     <video
       ref={videoRef}
       src={src}
+      poster={poster}
       muted
       loop
       playsInline
       preload="metadata"
       className={className}
+      aria-label="Cinematic FPV villa footage"
     />
+  );
+}
+
+function SectionLabel({ children }) {
+  return (
+    <p className="mb-5 text-xs font-medium uppercase tracking-[0.28em] text-zinc-400">
+      {children}
+    </p>
+  );
+}
+
+function ClipCard({ src, title, description, number }) {
+  return (
+    <article className="overflow-hidden rounded-2xl border border-white/10 bg-zinc-950">
+      <div className="relative aspect-video overflow-hidden bg-zinc-900">
+        <AutoplayVideo
+          src={`${R2}/${src}`}
+          className="h-full w-full object-cover"
+        />
+        <span className="absolute left-4 top-4 rounded-full border border-white/20 bg-black/50 px-3 py-1 text-xs tracking-widest text-white backdrop-blur-sm">
+          {number}
+        </span>
+      </div>
+
+      <div className="p-6 md:p-7">
+        <h3 className="mb-3 text-xl font-semibold text-white md:text-2xl">
+          {title}
+        </h3>
+        <p className="leading-relaxed text-zinc-400">{description}</p>
+      </div>
+    </article>
   );
 }
 
@@ -43,12 +78,12 @@ export default function LuxuryVillaFPVMarbella() {
     <>
       <Head>
         <title>
-          Luxury Villa FPV Marbella | Cinematic Indoor FPV Tours | AlexFilms
+          Luxury Villa FPV Marbella | Cinematic Indoor Drone Tours | AlexFilms
         </title>
 
         <meta
           name="description"
-          content="Cinematic indoor FPV drone tours of luxury villas and high-end properties in Marbella and across the Costa del Sol. Smooth, immersive FPV filmmaking by AlexFilms."
+          content="Showcase luxury villas in Marbella and the Costa del Sol with cinematic indoor FPV drone tours. Seamless room-to-room flights, architectural reveals and immersive indoor-outdoor transitions by AlexFilms."
         />
 
         <link
@@ -63,619 +98,626 @@ export default function LuxuryVillaFPVMarbella() {
 
         <meta
           property="og:description"
-          content="Cinematic indoor FPV drone tours for luxury villas, estates and high-end properties in Marbella and the Costa del Sol."
+          content="Discover a more immersive way to present luxury properties with cinematic indoor FPV flights across Marbella and the Costa del Sol."
         />
 
         <meta property="og:type" content="website" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1"
+        />
       </Head>
 
-      <main className="bg-black text-white">
-
+      <main className="overflow-hidden bg-black text-white">
         {/* HERO */}
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <section className="relative flex min-h-[90svh] items-center justify-center overflow-hidden md:min-h-screen">
           <video
             autoPlay
             muted
             loop
             playsInline
-            className="absolute inset-0 w-full h-full object-cover"
+            preload="metadata"
+            className="absolute inset-0 h-full w-full object-cover"
+            aria-label="Cinematic FPV footage of a luxury villa"
           >
             <source
-  src="https://pub-46816b9fcf1445efbe847da23ac5d27e.r2.dev/herobackgroundfpv.mp4"
-  type="video/mp4"
-/>
+              src={`${R2}/herobackgroundfpv.mp4`}
+              type="video/mp4"
+            />
           </video>
 
           <div className="absolute inset-0 bg-black/55" />
+          <div className="absolute inset-x-0 bottom-0 h-48 bg-linear-to-t from-black to-transparent" />
 
-          <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-            <p className="uppercase tracking-[0.3em] text-sm text-gray-300 mb-6">
-              Luxury Property FPV
-            </p>
+          <div className="relative z-10 mx-auto max-w-5xl px-6 py-24 text-center">
+            <SectionLabel>Luxury Property · FPV Filmmaking</SectionLabel>
 
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-8">
-              Luxury Villa FPV
+            <h1 className="mb-8 text-5xl font-semibold leading-[1.05] tracking-tight md:text-7xl lg:text-8xl">
+              Luxury Villa
               <br />
-              Tours in Marbella
+              FPV Tours
+              <br />
+              <span className="text-zinc-300">in Marbella</span>
             </h1>
 
-            <p className="max-w-2xl mx-auto text-lg md:text-xl text-gray-200 leading-relaxed mb-10">
-              Cinematic indoor FPV flights through exceptional villas,
-              estates and architectural spaces across Marbella and the
-              Costa del Sol.
+            <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-zinc-200 md:text-xl">
+              Experience exceptional properties through immersive,
+              cinematic flights that connect architecture, interiors
+              and outdoor living in one fluid visual journey.
             </p>
 
-            <Link
-              href="#work"
-              className="inline-block px-7 py-3 bg-white text-black rounded-full font-semibold hover:bg-gray-200 transition"
-            >
-              See the possibilities
-            </Link>
-          </div>
-        </section>
+            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <Link
+                href="#showcase"
+                className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3.5 font-semibold text-black transition hover:bg-zinc-200"
+              >
+                Explore the footage
+              </Link>
 
-        {/* INTRO */}
-        <section className="max-w-6xl mx-auto px-6 py-24 md:py-32">
-          <div className="max-w-3xl">
-            <p className="uppercase tracking-[0.25em] text-sm text-gray-500 mb-5">
-              More than a property walkthrough
-            </p>
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center rounded-full border border-white/50 px-7 py-3.5 font-semibold text-white transition hover:bg-white/10"
+              >
+                Discuss a property
+              </Link>
+            </div>
 
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight mb-8">
-              Show the entire villa as one cinematic experience.
-            </h2>
-
-            <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
-              Traditional property videos often move from room to room with
-              static shots and predictable transitions. Indoor FPV allows the
-              camera to move continuously through the architecture, connecting
-              spaces, levels and exterior areas into one fluid sequence.
-            </p>
-
-            <p className="text-lg md:text-xl text-gray-400 leading-relaxed mt-6">
-              The result is immersive, dynamic and designed to make the viewer
-              feel like they are actually moving through the property.
+            <p className="mt-12 text-xs uppercase tracking-[0.22em] text-zinc-400">
+              Marbella · Costa del Sol · Spain
             </p>
           </div>
         </section>
 
-        {/* FEATURED VIDEO */}
-        <section id="work" className="px-6 pb-24 md:pb-32">
-          <div className="max-w-6xl mx-auto">
-            <div className="relative aspect-video overflow-hidden rounded-xl bg-zinc-900">
-              <AutoplayVideo
-                src="/videos/villa-fpv-01.mp4"
-                className="w-full h-full object-cover"
+        {/* INTRODUCTION */}
+        <section className="mx-auto max-w-6xl px-6 py-24 md:py-32">
+          <div className="grid gap-10 md:grid-cols-12 md:gap-16">
+            <div className="md:col-span-5">
+              <SectionLabel>A different perspective</SectionLabel>
+              <h2 className="text-4xl font-semibold leading-tight md:text-5xl">
+                Don&apos;t just show the rooms.
+                <br />
+                <span className="text-zinc-400">
+                  Reveal how they connect.
+                </span>
+              </h2>
+            </div>
+
+            <div className="space-y-6 text-lg leading-relaxed text-zinc-400 md:col-span-7">
+              <p>
+                A luxury property is more than a collection of beautiful
+                rooms. It is the way the entrance opens into the living
+                space, how the kitchen connects to the terrace, and how
+                the interior meets the pool and surrounding landscape.
+              </p>
+
+              <p>
+                Indoor FPV filming brings these relationships to life.
+                A compact, agile drone moves through carefully planned
+                routes to create a continuous perspective that conventional
+                static shots often cannot achieve on their own.
+              </p>
+
+              <p>
+                The result is an immersive way to communicate the flow,
+                scale and atmosphere of a property to prospective buyers,
+                renters and clients.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* EXTERIOR REVEAL */}
+        <section id="showcase" className="px-6 pb-24 md:pb-32">
+          <div className="mx-auto max-w-6xl">
+            <div className="mb-12 max-w-3xl">
+              <SectionLabel>01 · First impressions</SectionLabel>
+              <h2 className="mb-6 text-4xl font-semibold md:text-6xl">
+                Build anticipation.
+                <br />
+                Reveal the property.
+              </h2>
+              <p className="max-w-2xl text-lg leading-relaxed text-zinc-400">
+                A carefully composed approach creates a sense of arrival.
+                Move past a palm, sweep across the pool and reveal the
+                architecture to establish the setting before taking the
+                viewer inside.
+              </p>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-2">
+              <ClipCard
+                number="01"
+                src="villa-fpv-01-palm-reveal.mp4"
+                title="A reveal through the palms"
+                description="Use foreground elements to create depth and anticipation, gradually opening up the view of the villa, pool and outdoor spaces."
+              />
+
+              <ClipCard
+                number="02"
+                src="villa-fpv-03-pool-approach.mp4"
+                title="A dynamic approach to the house"
+                description="Move across the pool towards the architecture to communicate scale, proximity and the relationship between the home and its outdoor setting."
+              />
+
+              <ClipCard
+                number="03"
+                src="villa-fpv-05-poolside-return.mp4"
+                title="Follow the outdoor living space"
+                description="A return flight over the poolside benches offers another perspective on the terrace and leisure areas, helping viewers imagine the experience of being there."
+              />
+
+              <ClipCard
+                number="04"
+                src="villa-fpv-06-palm-reveal-alt.mp4"
+                title="Another angle on the architecture"
+                description="A second palm-tree reveal can add variety to the exterior story, showing the property from a different approach and creating a stronger sense of place."
               />
             </div>
-
-            <div className="grid md:grid-cols-2 gap-8 mt-8">
-              <div>
-                <p className="uppercase tracking-[0.2em] text-xs text-gray-500 mb-3">
-                  Featured property
-                </p>
-
-                <h2 className="text-3xl font-bold">
-                  Marbella Luxury Villa
-                </h2>
-              </div>
-
-              <p className="text-gray-400 leading-relaxed">
-                A cinematic FPV property film designed to reveal the flow,
-                scale and architecture of a high-end Marbella residence.
-              </p>
-            </div>
           </div>
         </section>
 
-        {/* VIDEO GRID */}
-        <section className="max-w-6xl mx-auto px-6 py-24 md:py-32">
-          <div className="max-w-2xl mb-16">
-            <p className="uppercase tracking-[0.25em] text-sm text-gray-500 mb-5">
-              What can be filmed
-            </p>
-
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Designed around the property.
-            </h2>
-
-            <p className="text-lg text-gray-400 leading-relaxed">
-              Every flight can be planned around the architecture, interior
-              design and strongest visual features of the property.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-
-            <div className="bg-zinc-950 rounded-xl overflow-hidden">
-              <div className="aspect-video">
+        {/* INDOOR-OUTDOOR TRANSITION */}
+        <section className="border-y border-white/10 bg-zinc-950 px-6 py-24 md:py-32">
+          <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-2 md:gap-16">
+            <div className="order-2 md:order-1">
+              <div className="relative aspect-video overflow-hidden rounded-2xl bg-zinc-900">
                 <AutoplayVideo
-                  src="/videos/villa-fpv-02.mp4"
-                  className="w-full h-full object-cover"
+                  src={`${R2}/villa-fpv-04-terrace-to-interior.mp4`}
+                  className="h-full w-full object-cover"
                 />
               </div>
-
-              <div className="p-7">
-                <h3 className="text-2xl font-semibold mb-3">
-                  Room-to-room transitions
-                </h3>
-
-                <p className="text-gray-400 leading-relaxed">
-                  Fly seamlessly from living spaces into kitchens, bedrooms,
-                  hallways and entertainment areas without breaking the visual
-                  flow.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-zinc-950 rounded-xl overflow-hidden">
-              <div className="aspect-video">
-                <AutoplayVideo
-                  src="/videos/villa-fpv-03.mp4"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              <div className="p-7">
-                <h3 className="text-2xl font-semibold mb-3">
-                  Indoor to outdoor reveals
-                </h3>
-
-                <p className="text-gray-400 leading-relaxed">
-                  Move from an interior space through large glass doors or
-                  terraces and reveal the pool, gardens, sea views and
-                  surrounding landscape.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-zinc-950 rounded-xl overflow-hidden">
-              <div className="aspect-video">
-                <AutoplayVideo
-                  src="/videos/villa-fpv-04.mp4"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              <div className="p-7">
-                <h3 className="text-2xl font-semibold mb-3">
-                  Architectural movement
-                </h3>
-
-                <p className="text-gray-400 leading-relaxed">
-                  Use precise movement around staircases, ceilings, corridors,
-                  double-height spaces and architectural details to emphasize
-                  the character of the property.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-zinc-950 rounded-xl overflow-hidden">
-              <div className="aspect-video">
-                <AutoplayVideo
-                  src="/videos/villa-fpv-05.mp4"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              <div className="p-7">
-                <h3 className="text-2xl font-semibold mb-3">
-                  Lifestyle sequences
-                </h3>
-
-                <p className="text-gray-400 leading-relaxed">
-                  Combine the architecture with people, cars, pool areas,
-                  terraces and lifestyle details to create a complete luxury
-                  property story.
-                </p>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        {/* ADVANTAGES */}
-        <section className="border-y border-zinc-800">
-          <div className="max-w-6xl mx-auto px-6 py-24 md:py-32">
-
-            <div className="max-w-3xl mb-16">
-              <p className="uppercase tracking-[0.25em] text-sm text-gray-500 mb-5">
-                Why indoor FPV
+              <p className="mt-4 text-sm text-zinc-500">
+                Terrace → open sliding doors → living room
               </p>
+            </div>
 
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                A different way to experience a property.
+            <div className="order-1 md:order-2">
+              <SectionLabel>02 · Indoor meets outdoor</SectionLabel>
+              <h2 className="mb-6 text-4xl font-semibold leading-tight md:text-5xl">
+                One fluid transition.
+                <br />
+                <span className="text-zinc-400">
+                  Two connected worlds.
+                </span>
               </h2>
 
-              <p className="text-lg text-gray-400 leading-relaxed">
-                Indoor FPV changes how the viewer experiences the space.
+              <p className="mb-6 text-lg leading-relaxed text-zinc-400">
+                In Mediterranean luxury properties, the connection between
+                the terrace and interior is part of the experience. FPV
+                can travel from the outdoor living area through open
+                sliding doors and into the home, making that connection
+                immediately visible.
+              </p>
+
+              <p className="leading-relaxed text-zinc-400">
+                Rather than cutting between disconnected views, this
+                continuous movement helps the viewer understand how the
+                spaces relate to one another.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* FEATURED INTERIOR FLOW */}
+        <section className="mx-auto max-w-6xl px-6 py-24 md:py-32">
+          <div className="mb-12 max-w-3xl">
+            <SectionLabel>03 · Interior flow</SectionLabel>
+            <h2 className="mb-6 text-4xl font-semibold md:text-6xl">
+              Follow the architecture.
+            </h2>
+            <p className="text-lg leading-relaxed text-zinc-400">
+              From the entrance hall through the kitchen and dining area
+              into the living room, a single flight can reveal the layout
+              as a connected experience. The movement gives viewers a
+              clearer sense of the home&apos;s proportions, circulation
+              and relationship between its main living spaces.
+            </p>
+          </div>
+
+          <div className="overflow-hidden rounded-2xl border border-white/10 bg-zinc-950">
+            <div className="relative aspect-video bg-zinc-900">
+              <AutoplayVideo
+                src={`${R2}/villa-fpv-02-interior-flow.mp4`}
+                className="h-full w-full object-cover"
+              />
+            </div>
+
+            <div className="grid gap-6 p-6 md:grid-cols-3 md:p-9">
+              <div>
+                <h3 className="mb-2 text-lg font-semibold">
+                  A continuous perspective
+                </h3>
+                <p className="text-sm leading-relaxed text-zinc-400">
+                  Connect multiple rooms without relying entirely on
+                  separate, disconnected shots.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="mb-2 text-lg font-semibold">
+                  A sense of space
+                </h3>
+                <p className="text-sm leading-relaxed text-zinc-400">
+                  Show how the entrance, kitchen, dining area and living
+                  room fit together.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="mb-2 text-lg font-semibold">
+                  A natural journey
+                </h3>
+                <p className="text-sm leading-relaxed text-zinc-400">
+                  Guide the viewer through the property with purposeful
+                  movement and carefully planned framing.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* BASEMENT AND DISTINCTIVE SPACES */}
+        <section className="border-y border-white/10 bg-zinc-950 px-6 py-24 md:py-32">
+          <div className="mx-auto max-w-6xl">
+            <div className="mb-12 max-w-3xl">
+              <SectionLabel>04 · Beyond the main living spaces</SectionLabel>
+              <h2 className="mb-6 text-4xl font-semibold md:text-6xl">
+                Every space has a story.
+              </h2>
+              <p className="text-lg leading-relaxed text-zinc-400">
+                Entertainment rooms, private gyms and basement lounges
+                are important parts of a luxury property. FPV creates
+                opportunities to explore these spaces with movement,
+                revealing their layout and character rather than simply
+                presenting a series of static views.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-12">
-
-              <div>
-                <div className="text-4xl font-bold mb-5">01</div>
-                <h3 className="text-xl font-semibold mb-3">
-                  Immersive movement
-                </h3>
-                <p className="text-gray-400 leading-relaxed">
-                  Continuous movement creates a sense of actually travelling
-                  through the property rather than watching disconnected rooms.
-                </p>
-              </div>
-
-              <div>
-                <div className="text-4xl font-bold mb-5">02</div>
-                <h3 className="text-xl font-semibold mb-3">
-                  Show the full flow
-                </h3>
-                <p className="text-gray-400 leading-relaxed">
-                  Connect multiple rooms, floors and exterior areas into a
-                  single visual journey.
-                </p>
-              </div>
-
-              <div>
-                <div className="text-4xl font-bold mb-5">03</div>
-                <h3 className="text-xl font-semibold mb-3">
-                  Stand out instantly
-                </h3>
-                <p className="text-gray-400 leading-relaxed">
-                  A well-executed FPV sequence feels completely different from
-                  conventional property videos.
-                </p>
-              </div>
-
-              <div>
-                <div className="text-4xl font-bold mb-5">04</div>
-                <h3 className="text-xl font-semibold mb-3">
-                  Reveal scale
-                </h3>
-                <p className="text-gray-400 leading-relaxed">
-                  Long corridors, open-plan interiors and double-height spaces
-                  can be revealed through movement.
-                </p>
-              </div>
-
-              <div>
-                <div className="text-4xl font-bold mb-5">05</div>
-                <h3 className="text-xl font-semibold mb-3">
-                  Built for social
-                </h3>
-                <p className="text-gray-400 leading-relaxed">
-                  The same flight can be edited into vertical sequences for
-                  Instagram, TikTok and short-form campaigns.
-                </p>
-              </div>
-
-              <div>
-                <div className="text-4xl font-bold mb-5">06</div>
-                <h3 className="text-xl font-semibold mb-3">
-                  Cinematic production
-                </h3>
-                <p className="text-gray-400 leading-relaxed">
-                  FPV can be combined with cinema cameras, aerial drone footage
-                  and sound design for a complete property film.
-                </p>
-              </div>
-
-            </div>
-          </div>
-        </section>
-
-        {/* CREATIVE IDEAS */}
-        <section className="max-w-6xl mx-auto px-6 py-24 md:py-32">
-          <div className="max-w-3xl mb-16">
-
-            <p className="uppercase tracking-[0.25em] text-sm text-gray-500 mb-5">
-              Creative concepts
-            </p>
-
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Ways to make a villa unforgettable.
-            </h2>
-
-            <p className="text-lg text-gray-400 leading-relaxed">
-              The best FPV property films use movement to create memorable
-              moments around the architecture.
-            </p>
-
-          </div>
-
-          <div className="space-y-20">
-
-            <div className="grid md:grid-cols-2 gap-10 items-center">
-
-              <div className="aspect-video rounded-xl overflow-hidden bg-zinc-900">
-                <AutoplayVideo
-                  src="/videos/villa-fpv-06.mp4"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              <div>
-                <p className="text-sm text-gray-500 mb-3">01</p>
-
-                <h3 className="text-3xl font-bold mb-4">
-                  One continuous journey
-                </h3>
-
-                <p className="text-gray-400 leading-relaxed">
-                  Start outside, enter the villa, pass through the entrance,
-                  reveal the living room, transition through the kitchen,
-                  follow the staircase and finish at the pool or ocean view.
-                </p>
-              </div>
-
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-10 items-center">
-
-              <div className="md:order-2 aspect-video rounded-xl overflow-hidden bg-zinc-900">
-                <AutoplayVideo
-                  src="/videos/villa-fpv-07.mp4"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              <div className="md:order-1">
-                <p className="text-sm text-gray-500 mb-3">02</p>
-
-                <h3 className="text-3xl font-bold mb-4">
-                  Follow the lifestyle
-                </h3>
-
-                <p className="text-gray-400 leading-relaxed">
-                  Follow a person through the villa, transition through the
-                  kitchen and continue outside towards the pool.
-                </p>
-              </div>
-
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-10 items-center">
-
-              <div className="aspect-video rounded-xl overflow-hidden bg-zinc-900">
-                <AutoplayVideo
-                  src="/videos/villa-fpv-08.mp4"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              <div>
-                <p className="text-sm text-gray-500 mb-3">03</p>
-
-                <h3 className="text-3xl font-bold mb-4">
-                  Architecture reveal
-                </h3>
-
-                <p className="text-gray-400 leading-relaxed">
-                  Start close to an architectural detail and pull away into a
-                  much larger composition to reveal the scale of the space.
-                </p>
-              </div>
-
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-10 items-center">
-
-              <div className="md:order-2 aspect-video rounded-xl overflow-hidden bg-zinc-900">
-                <AutoplayVideo
-                  src="/videos/villa-fpv-09.mp4"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              <div className="md:order-1">
-                <p className="text-sm text-gray-500 mb-3">04</p>
-
-                <h3 className="text-3xl font-bold mb-4">
-                  FPV meets cinema
-                </h3>
-
-                <p className="text-gray-400 leading-relaxed">
-                  Combine fast, precise FPV movement with slower cinematic
-                  shots from a professional cinema camera and exterior aerial
-                  drone footage.
-                </p>
-              </div>
-
-            </div>
-
-          </div>
-        </section>
-
-        {/* FPV GEAR */}
-        <section className="bg-zinc-950">
-          <div className="max-w-6xl mx-auto px-6 py-24 md:py-32">
-
-            <div className="grid md:grid-cols-2 gap-16 items-center">
-
-              <div>
-
-                <p className="uppercase tracking-[0.25em] text-sm text-gray-500 mb-5">
-                  The FPV system
-                </p>
-
-                <h2 className="text-4xl md:text-5xl font-bold mb-8">
-                  Small enough to fly indoors.
-                  <br />
-                  Built for cinematic movement.
-                </h2>
-
-                <p className="text-lg text-gray-400 leading-relaxed mb-6">
-                  Indoor FPV requires a compact and highly responsive aircraft
-                  that can move precisely through complex interiors.
-                </p>
-
-                <p className="text-lg text-gray-400 leading-relaxed">
-                  This allows me to create flights through spaces that would be
-                  impossible to capture with a conventional large drone.
-                </p>
-
-              </div>
-
-              <div>
-                <img
-                  src="/images/gear1.png"
-                  alt="FPV drone used by AlexFilms"
-                  className="w-full max-w-xl mx-auto rounded-xl"
-                />
-              </div>
-
-            </div>
-          </div>
-        </section>
-
-        {/* FULL PRODUCTION */}
-        <section className="max-w-6xl mx-auto px-6 py-24 md:py-32">
-
-          <div className="max-w-3xl mb-14">
-            <p className="uppercase tracking-[0.25em] text-sm text-gray-500 mb-5">
-              Full production
-            </p>
-
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              FPV is only one part of the film.
-            </h2>
-
-            <p className="text-lg text-gray-400 leading-relaxed">
-              For larger property productions, FPV can be combined with
-              conventional aerial drone footage and ground-based cinematic
-              cameras.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-
-            <div className="bg-zinc-950 rounded-xl overflow-hidden">
-              <img
-                src="/images/gear2.png"
-                alt="AlexFilms professional camera equipment"
-                className="w-full aspect-4/3 object-cover"
+            <div className="grid gap-6 md:grid-cols-2">
+              <ClipCard
+                number="05"
+                src="villa-fpv-07-basement-lounge.mp4"
+                title="Explore the private lounge"
+                description="A circular flight through the basement lounge gives the viewer a sense of the room's layout and atmosphere, making the entertainment space feel like part of the wider property experience."
               />
 
-              <div className="p-7">
-                <h3 className="text-2xl font-semibold mb-3">
-                  Cinema camera
-                </h3>
-
-                <p className="text-gray-400 leading-relaxed">
-                  Detailed cinematic shots for interiors, architecture,
-                  lifestyle and important property details.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-zinc-950 rounded-xl overflow-hidden">
-              <img
-                src="/images/gear3.png"
-                alt="Professional aerial drone equipment"
-                className="w-full aspect-4/3 object-cover"
+              <ClipCard
+                number="06"
+                src="villa-fpv-08-gym-flythrough.mp4"
+                title="Bring the wellness space to life"
+                description="A smooth flight through the gym shows how the fitness area is arranged and how it fits into the property's private amenities."
               />
 
-              <div className="p-7">
-                <h3 className="text-2xl font-semibold mb-3">
-                  Aerial drone
-                </h3>
+              <div className="md:col-span-2">
+                <article className="overflow-hidden rounded-2xl border border-white/10 bg-black">
+                  <div className="relative aspect-video bg-zinc-900">
+                    <AutoplayVideo
+                      src={`${R2}/villa-fpv-09-pool-table-gap.mp4`}
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
 
-                <p className="text-gray-400 leading-relaxed">
-                  Exterior aerial perspectives showing the villa, gardens,
-                  surrounding landscape, coastline and its position within
-                  Marbella.
-                </p>
+                  <div className="grid gap-6 p-6 md:grid-cols-2 md:p-9">
+                    <div>
+                      <SectionLabel>A closer look at precision</SectionLabel>
+                      <h3 className="text-2xl font-semibold md:text-3xl">
+                        Through spaces a camera cannot easily reach.
+                      </h3>
+                    </div>
+
+                    <div>
+                      <p className="leading-relaxed text-zinc-400">
+                        Flying beneath a pool table through its openings
+                        is a small but memorable demonstration of precise
+                        FPV control. It shows how carefully planned
+                        movement can turn an ordinary feature into an
+                        unexpected visual moment.
+                      </p>
+                      <p className="mt-4 text-sm leading-relaxed text-zinc-500">
+                        Tight-space manoeuvres are planned around the
+                        location, obstacles and safe operating conditions.
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FULL PROPERTY PRESENTATION */}
+        <section className="mx-auto max-w-6xl px-6 py-24 md:py-32">
+          <div className="mb-10 max-w-3xl">
+            <SectionLabel>05 · The complete presentation</SectionLabel>
+            <h2 className="mb-6 text-4xl font-semibold md:text-6xl">
+              See the villa as a whole.
+            </h2>
+            <p className="text-lg leading-relaxed text-zinc-400">
+              Individual sequences highlight specific features. A longer
+              property presentation brings those moments together into
+              a broader visual journey, giving the viewer more time to
+              appreciate the architecture, interiors and outdoor areas.
+            </p>
+          </div>
+
+          <div className="overflow-hidden rounded-2xl bg-zinc-900">
+            <video
+              controls
+              muted
+              playsInline
+              preload="metadata"
+              className="aspect-video w-full object-cover"
+              aria-label="Full cinematic FPV villa presentation"
+            >
+              <source
+                src={`${R2}/villapresentation.mp4`}
+                type="video/mp4"
+              />
+              Your browser does not support HTML video.
+            </video>
+          </div>
+
+          <p className="mt-4 text-sm leading-relaxed text-zinc-500">
+            Watch the longer presentation to experience how the property&apos;s
+            different spaces come together in a single film.
+          </p>
+        </section>
+
+        {/* BENEFITS */}
+        <section className="border-y border-white/10 px-6 py-24 md:py-32">
+          <div className="mx-auto max-w-6xl">
+            <div className="mb-14 max-w-3xl">
+              <SectionLabel>Why FPV</SectionLabel>
+              <h2 className="mb-6 text-4xl font-semibold md:text-6xl">
+                More than a sequence of rooms.
+              </h2>
+              <p className="text-lg leading-relaxed text-zinc-400">
+                FPV is not a replacement for every kind of property
+                photography or filmmaking. It is a specialist approach
+                that adds continuous movement and distinctive perspectives
+                to a considered property presentation.
+              </p>
+            </div>
+
+            {/* FPV GEAR & VIDEO QUALITY */}
+            <div className="mt-16 overflow-hidden rounded-2xl border border-white/10 bg-zinc-950">
+              <div className="grid items-center gap-0 lg:grid-cols-2">
+                <div className="relative min-h-[280px] bg-zinc-900 sm:min-h-[380px]">
+                  <img
+                    src={`${R2}/gear1new.png`}
+                    alt="Flywoo FlyLens 85 FPV drone with DJI Goggles 3 and RadioMaster GX12 controller"
+                    className="absolute inset-0 h-full w-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+
+                <div className="p-7 md:p-10 lg:p-12">
+                  <SectionLabel>The equipment behind the shot</SectionLabel>
+                  <h3 className="mb-5 text-3xl font-semibold leading-tight md:text-4xl">
+                    Compact FPV.{" "}
+                    <span className="text-zinc-400">Cinematic detail.</span>
+                  </h3>
+                  <p className="mb-8 leading-relaxed text-zinc-400">
+                    My indoor FPV setup combines a compact Flywoo FlyLens 85,
+                    DJI Goggles 3 and RadioMaster GX12 controller with the DJI
+                    O4 Air Unit Pro. The digital video system records detailed,
+                    wide-angle footage while allowing precise movement through
+                    carefully planned routes inside a property.
+                  </p>
+
+                  <div className="grid grid-cols-2 gap-x-5 gap-y-6">
+                    <div className="border-t border-white/15 pt-4">
+                      <p className="mb-1 text-2xl font-semibold text-white">
+                        4K / 120 fps
+                      </p>
+                      <p className="text-sm leading-relaxed text-zinc-500">
+                        High-resolution recording with high-frame-rate options
+                      </p>
+                    </div>
+
+                    <div className="border-t border-white/15 pt-4">
+                      <p className="mb-1 text-2xl font-semibold text-white">
+                        1/1.3-inch
+                      </p>
+                      <p className="text-sm leading-relaxed text-zinc-500">
+                        CMOS image sensor in the O4 Air Unit Pro
+                      </p>
+                    </div>
+
+                    <div className="border-t border-white/15 pt-4">
+                      <p className="mb-1 text-2xl font-semibold text-white">
+                        10-bit D-Log M
+                      </p>
+                      <p className="text-sm leading-relaxed text-zinc-500">
+                        More flexibility for colour grading in post-production
+                      </p>
+                    </div>
+
+                    <div className="border-t border-white/15 pt-4">
+                      <p className="mb-1 text-2xl font-semibold text-white">
+                        155° FOV
+                      </p>
+                      <p className="text-sm leading-relaxed text-zinc-500">
+                        Ultra-wide field of view for immersive perspectives
+                      </p>
+                    </div>
+                  </div>
+
+                  <p className="mt-7 text-xs leading-relaxed text-zinc-500">
+                    Recording modes and image results depend on camera settings,
+                    flight conditions and the final delivery format.
+                  </p>
+                </div>
               </div>
             </div>
 
+            <div className="grid gap-x-12 gap-y-12 md:grid-cols-3">
+              <div>
+                <p className="mb-5 text-sm tracking-widest text-zinc-500">
+                  01
+                </p>
+                <h3 className="mb-3 text-xl font-semibold">
+                  Show how spaces connect
+                </h3>
+                <p className="leading-relaxed text-zinc-400">
+                  Move from room to room to help viewers understand the
+                  property&apos;s layout and flow.
+                </p>
+              </div>
+
+              <div>
+                <p className="mb-5 text-sm tracking-widest text-zinc-500">
+                  02
+                </p>
+                <h3 className="mb-3 text-xl font-semibold">
+                  Reveal the indoor-outdoor lifestyle
+                </h3>
+                <p className="leading-relaxed text-zinc-400">
+                  Connect interiors with terraces, pools and gardens
+                  through continuous movement.
+                </p>
+              </div>
+
+              <div>
+                <p className="mb-5 text-sm tracking-widest text-zinc-500">
+                  03
+                </p>
+                <h3 className="mb-3 text-xl font-semibold">
+                  Create memorable perspectives
+                </h3>
+                <p className="leading-relaxed text-zinc-400">
+                  Use foreground reveals, low passes and carefully
+                  planned routes to add visual interest.
+                </p>
+              </div>
+
+              <div>
+                <p className="mb-5 text-sm tracking-widest text-zinc-500">
+                  04
+                </p>
+                <h3 className="mb-3 text-xl font-semibold">
+                  Highlight the details
+                </h3>
+                <p className="leading-relaxed text-zinc-400">
+                  Showcase architectural features, entertainment areas
+                  and distinctive amenities.
+                </p>
+              </div>
+
+              <div>
+                <p className="mb-5 text-sm tracking-widest text-zinc-500">
+                  05
+                </p>
+                <h3 className="mb-3 text-xl font-semibold">
+                  Create versatile content
+                </h3>
+                <p className="leading-relaxed text-zinc-400">
+                  Plan footage that can support a full property film
+                  and shorter social-media edits.
+                </p>
+              </div>
+
+              <div>
+                <p className="mb-5 text-sm tracking-widest text-zinc-500">
+                  06
+                </p>
+                <h3 className="mb-3 text-xl font-semibold">
+                  Combine filming techniques
+                </h3>
+                <p className="leading-relaxed text-zinc-400">
+                  Pair FPV with conventional aerial footage and cinema
+                  camera shots when a production calls for a broader
+                  visual approach.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
         {/* WHO IT IS FOR */}
-        <section className="border-y border-zinc-800">
-          <div className="max-w-6xl mx-auto px-6 py-24 md:py-32">
+        <section className="mx-auto max-w-6xl px-6 py-24 md:py-32">
+          <div className="grid gap-12 md:grid-cols-2 md:gap-20">
+            <div>
+              <SectionLabel>Made for distinctive properties</SectionLabel>
+              <h2 className="text-4xl font-semibold leading-tight md:text-5xl">
+                For properties that deserve a more immersive presentation.
+              </h2>
+            </div>
 
-            <div className="grid md:grid-cols-2 gap-16">
+            <div className="space-y-7 text-lg leading-relaxed text-zinc-400">
+              <p>
+                <span className="font-medium text-white">
+                  Real-estate agencies
+                </span>{" "}
+                presenting exceptional homes to prospective buyers.
+              </p>
 
-              <div>
-                <p className="uppercase tracking-[0.25em] text-sm text-gray-500 mb-5">
-                  Built for
-                </p>
+              <p>
+                <span className="font-medium text-white">
+                  Luxury villa owners and rental companies
+                </span>{" "}
+                showcasing the full experience of a property.
+              </p>
 
-                <h2 className="text-4xl md:text-5xl font-bold">
-                  Properties that deserve more than a standard walkthrough.
-                </h2>
-              </div>
+              <p>
+                <span className="font-medium text-white">
+                  Architects and developers
+                </span>{" "}
+                highlighting spatial design, circulation and architectural
+                features.
+              </p>
 
-              <div className="space-y-8 text-lg text-gray-400">
-                <p>
-                  Luxury real-estate agencies presenting premium properties.
-                </p>
-
-                <p>
-                  Villa developers and architects wanting to showcase
-                  architecture and design.
-                </p>
-
-                <p>
-                  Property owners preparing a villa for sale or rental.
-                </p>
-
-                <p>
-                  Luxury hospitality brands and villa rental companies.
-                </p>
-
-                <p>
-                  Agencies and production companies looking for specialist
-                  indoor FPV footage in Marbella and the Costa del Sol.
-                </p>
-              </div>
-
+              <p>
+                <span className="font-medium text-white">
+                  Hospitality brands and creative agencies
+                </span>{" "}
+                looking for distinctive property content.
+              </p>
             </div>
           </div>
         </section>
 
         {/* FINAL CTA */}
-        <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
-
+        <section className="relative flex min-h-[70svh] items-center justify-center overflow-hidden">
           <video
             autoPlay
             muted
             loop
             playsInline
-            className="absolute inset-0 w-full h-full object-cover"
+            preload="metadata"
+            className="absolute inset-0 h-full w-full object-cover"
+            aria-label="Cinematic villa background"
           >
-            <source src="/videos/villa-fpv-hero.mp4" type="video/mp4" />
+            <source
+              src={`${R2}/herobackgroundfpv.mp4`}
+              type="video/mp4"
+            />
           </video>
 
-          <div className="absolute inset-0 bg-black/65" />
+          <div className="absolute inset-0 bg-black/70" />
+          <div className="absolute inset-x-0 top-0 h-40 bg-linear-to-b from-black to-transparent" />
 
-          <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
+          <div className="relative z-10 mx-auto max-w-3xl px-6 py-24 text-center">
+            <SectionLabel>Marbella · Costa del Sol</SectionLabel>
 
-            <p className="uppercase tracking-[0.3em] text-sm text-gray-300 mb-6">
-              Marbella · Costa del Sol
-            </p>
-
-            <h2 className="text-4xl md:text-6xl font-bold mb-8">
-              Let&apos;s turn the villa into a film.
+            <h2 className="mb-8 text-4xl font-semibold leading-tight md:text-6xl">
+              Let&apos;s turn your property into a film.
             </h2>
 
-            <p className="text-lg text-gray-300 leading-relaxed mb-10">
-              If you have a property that deserves a cinematic presentation,
-              get in touch and we can plan the flight around the architecture
-              and story of the space.
+            <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-zinc-300">
+              Have a villa, architectural space or distinctive property
+              in mind? Let&apos;s discuss how a carefully planned FPV
+              sequence could present it from a fresh perspective.
             </p>
 
             <Link
               href="/contact"
-              className="inline-block px-8 py-4 bg-white text-black rounded-full font-semibold hover:bg-gray-200 transition"
+              className="inline-flex items-center justify-center rounded-full bg-white px-8 py-4 font-semibold text-black transition hover:bg-zinc-200"
             >
               Get in touch
             </Link>
-
           </div>
         </section>
-
       </main>
     </>
   );
