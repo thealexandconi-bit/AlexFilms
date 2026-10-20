@@ -81,7 +81,7 @@ function GearSection({ item, reverse = false }) {
             sizes="(max-width: 768px) 85vw, 420px"
             className="object-cover transition duration-700 ease-out group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent" />
           <div className="absolute bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap">
             <span className="rounded-full border border-white/20 bg-black/50 px-4 py-2 text-xs uppercase tracking-[0.2em] text-white backdrop-blur-md">
               Equipment {item.number}
@@ -405,7 +405,7 @@ export default function About() {
         </div>
 
         <div className="about-images grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
-          <div className="group relative aspect-[4/5] overflow-hidden rounded-xl bg-zinc-900">
+          <div className="group relative aspect-4/5 overflow-hidden rounded-xl bg-zinc-900">
             <Image
               src="/images/video1.png"
               alt="Selected filmmaking project"
@@ -415,7 +415,7 @@ export default function About() {
             />
           </div>
 
-          <div className="group relative aspect-[4/5] overflow-hidden rounded-xl bg-zinc-900 sm:translate-y-8">
+          <div className="group relative aspect-4/5 overflow-hidden rounded-xl bg-zinc-900 sm:translate-y-8">
             <Image
               src="/images/pic6.png"
               alt="Selected cinematic moment"
@@ -425,7 +425,7 @@ export default function About() {
             />
           </div>
 
-          <div className="group relative aspect-[4/5] overflow-hidden rounded-xl bg-zinc-900">
+          <div className="group relative aspect-4/5 overflow-hidden rounded-xl bg-zinc-900">
             <Image
               src="/images/video3.png"
               alt="Selected aerial filmmaking project"

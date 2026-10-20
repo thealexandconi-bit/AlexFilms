@@ -115,11 +115,19 @@ export default function Home() {
               AlexFilms · Málaga, Spain
             </p>
 
-            <h1 className="mb-7 text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl md:text-7xl lg:text-8xl">
-              Cinematic Filmmaking
-              <br />
-              & FPV Drone Tours
-            </h1>
+            <h1
+  style={{
+    fontSize: "clamp(2.25rem, 5.5vw, 6rem)",
+    lineHeight: 1.08,
+    fontWeight: 800,
+    letterSpacing: "-0.025em",
+  }}
+  className="mb-7"
+>
+  Cinematic Filmmaking
+  <br />
+  & FPV Drone Tours
+</h1>
 
             <p className="mx-auto mb-10 max-w-2xl text-base leading-relaxed text-gray-200 sm:text-lg md:text-xl">
               Ground, aerial and immersive FPV filmmaking for luxury
@@ -196,7 +204,7 @@ export default function Home() {
                     title={project.title}
                   />
 
-                  <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/95 via-black/50 to-black/10 transition duration-500 group-hover:via-black/65" />
+                  <div className="absolute inset-0 z-10 bg-linear-to-t from-black/95 via-black/50 to-black/10 transition duration-500 group-hover:via-black/65" />
 
                   <div className="relative z-20 p-6 sm:p-8 md:p-9">
                     <p className="mb-4 text-xs tracking-[0.25em] text-gray-300">

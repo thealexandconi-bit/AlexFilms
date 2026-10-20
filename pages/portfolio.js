@@ -87,7 +87,7 @@ function AutoplayVideo({ src }) {
       playsInline
       loop
       preload="metadata"
-      className="w-full max-w-[300px] aspect-[9/16] object-cover rounded-lg shadow-2xl"
+      className="w-full max-w-[300px] aspect-9/16 object-cover rounded-lg shadow-2xl"
     />
   );
 }
